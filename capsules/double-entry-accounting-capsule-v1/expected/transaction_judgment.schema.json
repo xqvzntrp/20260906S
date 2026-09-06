@@ -1,0 +1,10 @@
+{
+  "schema_id":"transaction_judgment","version":"1.0.0","relation":"transaction_judgment",
+  "columns":[
+    {"name":"transaction_id","type":"TEXT","nullable":false},
+    {"name":"balance_quantity","type":"DECIMAL","nullable":false},
+    {"name":"entry_count","type":"INTEGER","nullable":false},
+    {"name":"invalid_direction_count","type":"INTEGER","nullable":false},
+    {"name":"balance_state","type":"TEXT","nullable":false}
+  ]
+}

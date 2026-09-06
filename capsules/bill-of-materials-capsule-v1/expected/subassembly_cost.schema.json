@@ -1,0 +1,1 @@
+{"schema_id":"subassembly_cost","version":"1.0.0","relation":"subassembly_cost","columns":[{"name":"assembly_id","type":"TEXT","nullable":false},{"name":"assembly_unit_cost","type":"DECIMAL","nullable":false},{"name":"component_line_count","type":"INTEGER","nullable":false}]}

@@ -1,0 +1,49 @@
+{
+  "relation_id": "partner_product_expertise_exposure",
+  "description": "Attributed product booking exposure with matching formal partner Expertise evidence. Attribution and Expertise remain independent facts; this output does not imply causation, authorization, compensation, or commercial route.",
+  "inputs": {
+    "exposure": "partner_product_booking_exposure",
+    "expertise": "data/partner_expertise_evidence.csv"
+  },
+  "steps": [
+    {
+      "id": "with_expertise",
+      "op": "join",
+      "left": "exposure",
+      "right": "expertise",
+      "on": [
+        {
+          "left": "partner_registry_id",
+          "operator": "=",
+          "right": "partner_registry_id"
+        },
+        {
+          "left": "product_name",
+          "operator": "=",
+          "right": "product_name"
+        }
+      ]
+    },
+    {
+      "id": "selected",
+      "op": "project",
+      "from": "with_expertise",
+      "select": [
+        "principal_partner_registry_id",
+        "partner_registry_id",
+        "partner_name",
+        "membership_type",
+        "attribution_type",
+        "product_name",
+        "expertise_evidence_id",
+        "expertise_name",
+        "expertise_track",
+        "evidence_status",
+        "effective_date",
+        "booking_exposure",
+        "opportunity_count"
+      ]
+    }
+  ],
+  "output": "selected"
+}

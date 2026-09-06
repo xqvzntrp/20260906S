@@ -1,0 +1,73 @@
+{
+  "relation_id": "marketplace_product_economics",
+  "description": "Marketplace product economics derived from reported marketplace amount and underlying cloud infrastructure cost.",
+  "inputs": {
+    "components": "marketplace_product_economics_components"
+  },
+  "steps": [
+    {
+      "id": "with_contribution",
+      "op": "derive",
+      "from": "components",
+      "columns": [
+        {
+          "name": "contribution_amount",
+          "precision": 18,
+          "scale": 2,
+          "expression": {
+            "function": "subtract",
+            "args": [
+              {
+                "column": "reported_amount"
+              },
+              {
+                "column": "cloud_cost"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "with_margin",
+      "op": "derive",
+      "from": "with_contribution",
+      "columns": [
+        {
+          "name": "margin_ratio",
+          "precision": 18,
+          "scale": 8,
+          "expression": {
+            "function": "divide",
+            "args": [
+              {
+                "column": "contribution_amount"
+              },
+              {
+                "column": "reported_amount"
+              }
+            ]
+          }
+        }
+      ],
+      "select": [
+        "marketplace",
+        "product_name",
+        "reported_amount",
+        "usage_record_count",
+        "product_family",
+        "cloud",
+        "cloud_cost",
+        "cloud_usage_quantity",
+        "cloud_cost_record_count",
+        "contribution_amount",
+        "margin_ratio"
+      ],
+      "order_by": [
+        "marketplace",
+        "product_name"
+      ]
+    }
+  ],
+  "output": "with_margin"
+}

@@ -1,0 +1,1 @@
+{"schema_id":"parts","version":"1.0.0","relation":"parts","columns":[{"name":"part_id","type":"TEXT","nullable":false},{"name":"part_name","type":"TEXT","nullable":false},{"name":"part_type","type":"TEXT","nullable":false},{"name":"unit_cost","type":"NUMBER","precision":18,"scale":2,"nullable":false}]}

@@ -1,0 +1,38 @@
+{
+  "relation_id": "required_primitives",
+  "inputs": {
+    "contracts": "primitive_contracts"
+  },
+  "steps": [
+    {
+      "id": "valid",
+      "op": "filter",
+      "from": "contracts",
+      "where": {
+        "column": "contract_state",
+        "operator": "=",
+        "value": "CONSTITUTIONAL_PRIMITIVE"
+      }
+    },
+    {
+      "id": "renamed",
+      "op": "rename",
+      "from": "valid",
+      "rename": {
+        "primitive_id": "operation_id"
+      }
+    },
+    {
+      "id": "selected",
+      "op": "project",
+      "from": "renamed",
+      "select": [
+        "operation_id",
+        "category",
+        "provenance_shape",
+        "primary_failure_class"
+      ]
+    }
+  ],
+  "output": "selected"
+}

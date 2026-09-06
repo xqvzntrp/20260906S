@@ -1,0 +1,12 @@
+{
+  "schema_id": "marketplace_usage_records",
+  "version": "3.0.0",
+  "relation": "marketplace_usage_records",
+  "columns": [
+    {"name":"usage_record_id","type":"TEXT","nullable":false},
+    {"name":"entitlement_id","type":"TEXT","nullable":false},
+    {"name":"usage_dimension","type":"TEXT","nullable":false},
+    {"name":"reported_amount","type":"DECIMAL","nullable":false},
+    {"name":"usage_record_status","type":"TEXT","nullable":false}
+  ]
+}

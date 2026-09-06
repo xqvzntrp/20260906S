@@ -1,0 +1,13 @@
+{
+  "relation_id":"subassembly_component_cost",
+  "description":"Known purchased components directly used by non-root assemblies, with extended cost.",
+  "inputs":{"components":"bom_component_judgment"},
+  "steps":[
+    {"id":"known","op":"filter","from":"components","where":{"column":"component_state","operator":"=","value":"KNOWN"}},
+    {"id":"purchased","op":"filter","from":"known","where":{"column":"part_type","operator":"=","value":"PURCHASED"}},
+    {"id":"non_root","op":"filter","from":"purchased","where":{"column":"assembly_id","operator":"!=","value":"BICYCLE"}},
+    {"id":"costed","op":"derive","from":"non_root","columns":[{"name":"extended_cost","precision":18,"scale":2,"expression":{"function":"multiply","args":[{"column":"quantity"},{"column":"unit_cost"}]}}]},
+    {"id":"selected","op":"project","from":"costed","select":["assembly_id","component_id","part_name","quantity","unit_cost","extended_cost"]}
+  ],
+  "output":"selected"
+}

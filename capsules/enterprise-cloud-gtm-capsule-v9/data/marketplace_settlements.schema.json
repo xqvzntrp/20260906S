@@ -1,0 +1,13 @@
+{
+  "schema_id": "marketplace_settlements",
+  "version": "3.0.0",
+  "relation": "marketplace_settlements",
+  "columns": [
+    {"name":"settlement_id","type":"TEXT","nullable":false},
+    {"name":"offer_id","type":"TEXT","nullable":false},
+    {"name":"collected_amount","type":"DECIMAL","nullable":false},
+    {"name":"disbursed_amount","type":"DECIMAL","nullable":false},
+    {"name":"outstanding_amount","type":"DECIMAL","nullable":false},
+    {"name":"status","type":"TEXT","nullable":false}
+  ]
+}

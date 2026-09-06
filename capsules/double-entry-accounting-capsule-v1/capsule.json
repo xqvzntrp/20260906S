@@ -1,0 +1,54 @@
+{
+  "capsule": {
+    "id": "DOUBLE_ENTRY_ACCOUNTING_V1",
+    "version": "1.0.0"
+  },
+  "inputs": [
+    {
+      "id": "entries",
+      "path": "data/entries.csv",
+      "schema_path": "data/entries.schema.json",
+      "format": "csv"
+    }
+  ],
+  "relations": [
+    {"id":"signed_entries","path":"relations/signed_entries.json","format":"json"},
+    {"id":"transaction_balance","path":"relations/transaction_balance.json","format":"json"},
+    {"id":"transaction_judgment","path":"relations/transaction_judgment.json","format":"json"},
+    {"id":"unbalanced_transactions","path":"relations/unbalanced_transactions.json","format":"json"}
+  ],
+  "outputs": [
+    {
+      "id":"signed_entries",
+      "relation":"signed_entries",
+      "generated_path":"generated/signed_entries.csv",
+      "expected_path":"expected/signed_entries.csv",
+      "schema_path":"expected/signed_entries.schema.json",
+      "format":"csv"
+    },
+    {
+      "id":"transaction_balance",
+      "relation":"transaction_balance",
+      "generated_path":"generated/transaction_balance.csv",
+      "expected_path":"expected/transaction_balance.csv",
+      "schema_path":"expected/transaction_balance.schema.json",
+      "format":"csv"
+    },
+    {
+      "id":"transaction_judgment",
+      "relation":"transaction_judgment",
+      "generated_path":"generated/transaction_judgment.csv",
+      "expected_path":"expected/transaction_judgment.csv",
+      "schema_path":"expected/transaction_judgment.schema.json",
+      "format":"csv"
+    },
+    {
+      "id":"unbalanced_transactions",
+      "relation":"unbalanced_transactions",
+      "generated_path":"generated/unbalanced_transactions.csv",
+      "expected_path":"expected/unbalanced_transactions.csv",
+      "schema_path":"expected/unbalanced_transactions.schema.json",
+      "format":"csv"
+    }
+  ]
+}

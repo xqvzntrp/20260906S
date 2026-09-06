@@ -1,0 +1,1 @@
+{"schema_id":"self_model_summary","version":"1.0.0","relation":"self_model_summary","columns":[{"name":"primitive_count","type":"INTEGER","nullable":false},{"name":"kernel_witness_count","type":"INTEGER","nullable":false},{"name":"self_model_state","type":"TEXT","nullable":false}]}

@@ -1,0 +1,82 @@
+{
+  "relation_id": "partner_readiness_gaps",
+  "description": "Attributed product exposure that lacks matching Expertise evidence, commercial authorization, or both. This is an operational gap view derived from readiness and does not redefine the underlying facts.",
+  "inputs": {
+    "readiness": "partner_product_readiness"
+  },
+  "steps": [
+    {
+      "id": "gap_classification",
+      "op": "derive",
+      "from": "readiness",
+      "columns": [
+        {
+          "name": "gap_type",
+          "expression": {
+            "condition": {
+              "column": "expertise_present",
+              "operator": "=",
+              "value": "NO"
+            },
+            "then": {
+              "condition": {
+                "column": "authorization_present",
+                "operator": "=",
+                "value": "NO"
+              },
+              "then": {
+                "value": "MISSING_BOTH"
+              },
+              "else": {
+                "value": "MISSING_EXPERTISE"
+              }
+            },
+            "else": {
+              "condition": {
+                "column": "authorization_present",
+                "operator": "=",
+                "value": "NO"
+              },
+              "then": {
+                "value": "MISSING_AUTHORIZATION"
+              },
+              "else": {
+                "value": "NONE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gaps_only",
+      "op": "filter",
+      "from": "gap_classification",
+      "where": {
+        "column": "gap_type",
+        "operator": "!=",
+        "value": "NONE"
+      }
+    },
+    {
+      "id": "selected",
+      "op": "project",
+      "from": "gaps_only",
+      "select": [
+        "principal_partner_registry_id",
+        "partner_registry_id",
+        "partner_name",
+        "membership_type",
+        "attribution_type",
+        "product_name",
+        "expertise_present",
+        "authorization_present",
+        "readiness_state",
+        "gap_type",
+        "booking_exposure",
+        "opportunity_count"
+      ]
+    }
+  ],
+  "output": "selected"
+}

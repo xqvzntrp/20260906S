@@ -1,0 +1,1 @@
+{"schema_id":"notes","version":"1.0.0","relation":"notes","columns":[{"name":"primitive_id","type":"TEXT","nullable":false},{"name":"note","type":"TEXT","nullable":false}]}

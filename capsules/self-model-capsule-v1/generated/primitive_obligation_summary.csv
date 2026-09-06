@@ -1,0 +1,9 @@
+primitive_id,invariant_count
+AGGREGATE,2
+CROSS_JOIN,2
+DERIVE,2
+FILTER,2
+JOIN,2
+LEFT_JOIN,2
+PROJECT,2
+RENAME,2

@@ -1,0 +1,15 @@
+{
+  "schema_id": "cloud_cost_records",
+  "version": "4.0.0",
+  "relation": "cloud_cost_records",
+  "columns": [
+    {"name":"cost_record_id","type":"TEXT","nullable":false},
+    {"name":"product_id","type":"TEXT","nullable":false},
+    {"name":"cloud","type":"TEXT","nullable":false},
+    {"name":"service","type":"TEXT","nullable":false},
+    {"name":"region","type":"TEXT","nullable":false},
+    {"name":"resource_id","type":"TEXT","nullable":false},
+    {"name":"usage_quantity","type":"DECIMAL","nullable":false},
+    {"name":"cost_amount","type":"DECIMAL","nullable":false}
+  ]
+}

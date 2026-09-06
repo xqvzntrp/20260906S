@@ -1,0 +1,1 @@
+{"schema_id":"primitives","version":"1.0.0","relation":"primitives","columns":[{"name":"primitive_id","type":"TEXT","nullable":false},{"name":"category","type":"TEXT","nullable":false},{"name":"produces_new_relation","type":"BOOLEAN","nullable":false}]}

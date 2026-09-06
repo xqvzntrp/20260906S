@@ -1,0 +1,1 @@
+{"schema_id":"bom","version":"1.0.0","relation":"bom","columns":[{"name":"assembly_id","type":"TEXT","nullable":false},{"name":"component_id","type":"TEXT","nullable":false},{"name":"quantity","type":"NUMBER","precision":18,"scale":2,"nullable":false}]}

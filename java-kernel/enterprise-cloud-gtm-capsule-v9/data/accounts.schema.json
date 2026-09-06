@@ -1,0 +1,11 @@
+{
+  "schema_id": "accounts",
+  "version": "2.0.0",
+  "relation": "accounts",
+  "columns": [
+    {"name":"account_id","type":"TEXT","nullable":false},
+    {"name":"account_name","type":"TEXT","nullable":false},
+    {"name":"segment","type":"TEXT","nullable":false},
+    {"name":"region","type":"TEXT","nullable":false}
+  ]
+}

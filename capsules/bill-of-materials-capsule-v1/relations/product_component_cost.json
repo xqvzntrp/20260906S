@@ -1,0 +1,14 @@
+{
+  "relation_id":"product_component_cost",
+  "description":"Root-product components costed from purchased-part unit cost or previously derived subassembly cost. Unknown components remain present with zero placeholder cost and an explicit invalid flag.",
+  "inputs":{"components":"bom_component_judgment","subassembly_cost":"subassembly_cost"},
+  "steps":[
+    {"id":"root_components","op":"filter","from":"components","where":{"column":"assembly_id","operator":"=","value":"BICYCLE"}},
+    {"id":"named_subassembly_cost","op":"rename","from":"subassembly_cost","rename":{"assembly_id":"subassembly_id"}},
+    {"id":"with_subassembly_cost","op":"left_join","left":"root_components","right":"named_subassembly_cost","on":[{"left":"component_id","operator":"=","right":"subassembly_id"}]},
+    {"id":"effective_cost","op":"derive","from":"with_subassembly_cost","columns":[{"name":"effective_unit_cost","precision":18,"scale":2,"expression":{"condition":{"column":"component_state","operator":"=","value":"UNKNOWN_COMPONENT"},"then":{"value":0.00},"else":{"condition":{"column":"part_type","operator":"=","value":"ASSEMBLY"},"then":{"column":"assembly_unit_cost"},"else":{"column":"unit_cost"}}}}]},
+    {"id":"extended","op":"derive","from":"effective_cost","columns":[{"name":"extended_cost","precision":18,"scale":2,"expression":{"function":"multiply","args":[{"column":"quantity"},{"column":"effective_unit_cost"}]}}]},
+    {"id":"selected","op":"project","from":"extended","select":["component_id","part_name","part_type","quantity","component_state","invalid_component_flag","effective_unit_cost","extended_cost"]}
+  ],
+  "output":"selected"
+}

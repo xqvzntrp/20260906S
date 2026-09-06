@@ -1,0 +1,47 @@
+{
+  "relation_id": "primitive_obligation_summary",
+  "inputs": {
+    "links": "data/primitive_invariant.csv",
+    "invariants": "data/invariants.csv"
+  },
+  "steps": [
+    {
+      "id": "expanded",
+      "op": "join",
+      "left": "links",
+      "right": "invariants",
+      "on": [
+        {
+          "left": "invariant_id",
+          "operator": "=",
+          "right": "invariant_id"
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "op": "aggregate",
+      "from": "expanded",
+      "group_by": [
+        "primitive_id"
+      ],
+      "measures": [
+        {
+          "name": "invariant_count",
+          "function": "COUNT_DISTINCT",
+          "column": "invariant_id"
+        }
+      ]
+    },
+    {
+      "id": "selected",
+      "op": "project",
+      "from": "summary",
+      "select": [
+        "primitive_id",
+        "invariant_count"
+      ]
+    }
+  ],
+  "output": "selected"
+}

@@ -1,0 +1,19 @@
+{
+  "relation_id": "transaction_balance",
+  "description": "One row per transaction containing signed balance, entry count, and count of entries whose direction is outside the modeled DEBIT/CREDIT domain.",
+  "inputs": {"signed_entries": "signed_entries"},
+  "steps": [
+    {
+      "id": "balance",
+      "op": "aggregate",
+      "from": "signed_entries",
+      "group_by": ["transaction_id"],
+      "measures": [
+        {"name":"balance_quantity","function":"SUM","column":"signed_quantity"},
+        {"name":"entry_count","function":"COUNT","column":"entry_id"},
+        {"name":"invalid_direction_count","function":"SUM","column":"invalid_direction_flag"}
+      ]
+    }
+  ],
+  "output": "balance"
+}

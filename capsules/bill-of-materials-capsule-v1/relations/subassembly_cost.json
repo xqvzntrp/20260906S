@@ -1,0 +1,9 @@
+{
+  "relation_id":"subassembly_cost",
+  "description":"One row per subassembly with cost derived entirely from purchased leaf components.",
+  "inputs":{"components":"subassembly_component_cost"},
+  "steps":[
+    {"id":"cost","op":"aggregate","from":"components","group_by":["assembly_id"],"measures":[{"name":"assembly_unit_cost","function":"SUM","column":"extended_cost"},{"name":"component_line_count","function":"COUNT","column":"component_id"}]}
+  ],
+  "output":"cost"
+}

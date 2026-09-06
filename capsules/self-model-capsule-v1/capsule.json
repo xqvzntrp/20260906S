@@ -1,0 +1,25 @@
+{
+ "capsule":{"id":"SELF_MODEL_V1","version":"1.0.0"},
+ "inputs":[
+  {"id":"primitives","path":"data/primitives.csv","schema_path":"data/primitives.schema.json","format":"csv"},
+  {"id":"contracts","path":"data/contracts.csv","schema_path":"data/contracts.schema.json","format":"csv"},
+  {"id":"notes","path":"data/notes.csv","schema_path":"data/notes.schema.json","format":"csv"},
+  {"id":"invariants","path":"data/invariants.csv","schema_path":"data/invariants.schema.json","format":"csv"},
+  {"id":"primitive_invariant","path":"data/primitive_invariant.csv","schema_path":"data/primitive_invariant.schema.json","format":"csv"},
+  {"id":"kernels","path":"data/kernels.csv","schema_path":"data/kernels.schema.json","format":"csv"}
+ ],
+ "relations":[
+  {"id":"primitive_contracts","path":"relations/primitive_contracts.json","format":"json"},
+  {"id":"required_primitives","path":"relations/required_primitives.json","format":"json"},
+  {"id":"kernel_primitive_matrix","path":"relations/kernel_primitive_matrix.json","format":"json"},
+  {"id":"primitive_obligation_summary","path":"relations/primitive_obligation_summary.json","format":"json"},
+  {"id":"self_model_summary","path":"relations/self_model_summary.json","format":"json"}
+ ],
+ "outputs":[
+  {"id":"primitive_contracts","relation":"primitive_contracts","generated_path":"generated/primitive_contracts.csv","expected_path":"expected/primitive_contracts.csv","schema_path":"expected/primitive_contracts.schema.json","format":"csv"},
+  {"id":"required_primitives","relation":"required_primitives","generated_path":"generated/required_primitives.csv","expected_path":"expected/required_primitives.csv","schema_path":"expected/required_primitives.schema.json","format":"csv"},
+  {"id":"kernel_primitive_matrix","relation":"kernel_primitive_matrix","generated_path":"generated/kernel_primitive_matrix.csv","expected_path":"expected/kernel_primitive_matrix.csv","schema_path":"expected/kernel_primitive_matrix.schema.json","format":"csv"},
+  {"id":"primitive_obligation_summary","relation":"primitive_obligation_summary","generated_path":"generated/primitive_obligation_summary.csv","expected_path":"expected/primitive_obligation_summary.csv","schema_path":"expected/primitive_obligation_summary.schema.json","format":"csv"},
+  {"id":"self_model_summary","relation":"self_model_summary","generated_path":"generated/self_model_summary.csv","expected_path":"expected/self_model_summary.csv","schema_path":"expected/self_model_summary.schema.json","format":"csv"}
+ ]
+}

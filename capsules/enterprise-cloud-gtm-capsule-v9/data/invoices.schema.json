@@ -1,0 +1,12 @@
+{
+  "schema_id": "invoices",
+  "version": "2.0.0",
+  "relation": "invoices",
+  "columns": [
+    {"name":"invoice_id","type":"TEXT","nullable":false},
+    {"name":"status","type":"TEXT","nullable":false},
+    {"name":"gross_amount","type":"DECIMAL","nullable":false},
+    {"name":"reconciled_amount","type":"DECIMAL","nullable":false},
+    {"name":"outstanding_amount","type":"DECIMAL","nullable":false}
+  ]
+}

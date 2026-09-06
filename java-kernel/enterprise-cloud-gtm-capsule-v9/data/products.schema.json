@@ -1,0 +1,10 @@
+{
+  "schema_id": "products",
+  "version": "2.0.0",
+  "relation": "products",
+  "columns": [
+    {"name":"product_id","type":"TEXT","nullable":false},
+    {"name":"product_name","type":"TEXT","nullable":false},
+    {"name":"product_family","type":"TEXT","nullable":false}
+  ]
+}

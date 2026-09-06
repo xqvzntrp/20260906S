@@ -1,0 +1,30 @@
+{
+  "schema_id": "marketplace_product_economics",
+  "version": "5.0.0",
+  "relation": "marketplace_product_economics",
+  "columns": [
+    {"name":"marketplace","type":"TEXT","nullable":false},
+    {"name":"product_name","type":"TEXT","nullable":false},
+    {"name":"reported_amount","type":"DECIMAL","nullable":false},
+    {"name":"usage_record_count","type":"INTEGER","nullable":false},
+    {"name":"product_family","type":"TEXT","nullable":false},
+    {"name":"cloud","type":"TEXT","nullable":false},
+    {"name":"cloud_cost","type":"DECIMAL","nullable":false},
+    {"name":"cloud_usage_quantity","type":"DECIMAL","nullable":false},
+    {"name":"cloud_cost_record_count","type":"INTEGER","nullable":false},
+    {
+      "name":"contribution_amount",
+      "type":"NUMBER",
+      "precision":18,
+      "scale":2,
+      "nullable":false
+    },
+    {
+      "name":"margin_ratio",
+      "type":"NUMBER",
+      "precision":18,
+      "scale":8,
+      "nullable":false
+    }
+  ]
+}

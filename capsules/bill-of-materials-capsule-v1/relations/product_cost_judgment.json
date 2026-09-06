@@ -1,0 +1,10 @@
+{
+  "relation_id":"product_cost_judgment",
+  "description":"Final product cost plus completeness judgment. Any unknown component makes the result incomplete even though known cost evidence is still preserved and totaled.",
+  "inputs":{"components":"product_component_cost"},
+  "steps":[
+    {"id":"total","op":"aggregate","from":"components","measures":[{"name":"known_product_cost","function":"SUM","column":"extended_cost"},{"name":"component_line_count","function":"COUNT","column":"component_id"},{"name":"invalid_component_count","function":"SUM","column":"invalid_component_flag"}]},
+    {"id":"judged","op":"derive","from":"total","columns":[{"name":"cost_state","expression":{"condition":{"column":"invalid_component_count","operator":"!=","value":0},"then":{"value":"INCOMPLETE_COMPONENT"},"else":{"condition":{"column":"known_product_cost","operator":">","value":0.00},"then":{"value":"COSTED"},"else":{"value":"INVALID_COST"}}}}]}
+  ],
+  "output":"judged"
+}

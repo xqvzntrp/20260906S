@@ -1,0 +1,27 @@
+{
+  "relation_id": "transaction_judgment",
+  "description": "Classifies a transaction as INVALID_DIRECTION when any entry direction is outside DEBIT/CREDIT; otherwise BALANCED exactly when signed balance is zero, else UNBALANCED.",
+  "inputs": {"balances": "transaction_balance"},
+  "steps": [
+    {
+      "id": "classified",
+      "op": "derive",
+      "from": "balances",
+      "columns": [
+        {
+          "name": "balance_state",
+          "expression": {
+            "condition": {"column":"invalid_direction_count","operator":"!=","value":0},
+            "then": {"value":"INVALID_DIRECTION"},
+            "else": {
+              "condition": {"column":"balance_quantity","operator":"=","value":0.00},
+              "then": {"value":"BALANCED"},
+              "else": {"value":"UNBALANCED"}
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "output": "classified"
+}

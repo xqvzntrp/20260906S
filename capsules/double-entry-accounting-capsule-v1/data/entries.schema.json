@@ -1,0 +1,12 @@
+{
+  "schema_id": "entries",
+  "version": "1.0.0",
+  "relation": "entries",
+  "columns": [
+    {"name":"transaction_id","type":"TEXT","nullable":false},
+    {"name":"entry_id","type":"TEXT","nullable":false},
+    {"name":"account_id","type":"TEXT","nullable":false},
+    {"name":"direction","type":"TEXT","nullable":false},
+    {"name":"quantity","type":"NUMBER","precision":18,"scale":2,"nullable":false}
+  ]
+}

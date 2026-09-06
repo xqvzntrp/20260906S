@@ -1,0 +1,1 @@
+{"schema_id":"product_cost_judgment","version":"1.0.0","relation":"product_cost_judgment","columns":[{"name":"known_product_cost","type":"DECIMAL","nullable":false},{"name":"component_line_count","type":"INTEGER","nullable":false},{"name":"invalid_component_count","type":"INTEGER","nullable":false},{"name":"cost_state","type":"TEXT","nullable":false}]}

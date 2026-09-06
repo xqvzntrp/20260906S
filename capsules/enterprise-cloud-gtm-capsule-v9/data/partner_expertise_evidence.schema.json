@@ -1,0 +1,42 @@
+{
+  "schema_id": "partner_expertise_evidence",
+  "version": "6.0.0",
+  "relation": "partner_expertise_evidence",
+  "columns": [
+    {
+      "name": "expertise_evidence_id",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "partner_registry_id",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "product_name",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "expertise_name",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "expertise_track",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "evidence_status",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "effective_date",
+      "type": "DATE",
+      "nullable": false
+    }
+  ]
+}

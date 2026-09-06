@@ -1,0 +1,1 @@
+{"schema_id":"primitive_obligation_summary","version":"1.0.0","relation":"primitive_obligation_summary","columns":[{"name":"primitive_id","type":"TEXT","nullable":false},{"name":"invariant_count","type":"INTEGER","nullable":false}]}

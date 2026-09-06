@@ -1,0 +1,7 @@
+principal_partner_registry_id,partner_registry_id,partner_name,membership_type,attribution_type,product_name,authorization_id,commercial_motion,regional_market,authorization_status,effective_date,booking_exposure,opportunity_count
+PR-100,PR-101,CloudBridge US,ASSOCIATE,SOURCED,Cloud Database,AUTH-001,RESELL,US,ACTIVE,2026-01-01,300000,1
+PR-100,PR-101,CloudBridge US,ASSOCIATE,SOURCED,Cloud Security,AUTH-005,SERVICE,US,ACTIVE,2026-04-01,120000,1
+PR-100,PR-100,CloudBridge Global,PRINCIPAL,CO_SELL,Cloud Database,AUTH-002,CO_SELL,GLOBAL,ACTIVE,2025-10-01,250000,1
+PR-200,PR-201,DataSphere East,ASSOCIATE,SOURCED,API Platform,AUTH-003,RESELL,US_EAST,ACTIVE,2026-02-01,400000,1
+PR-100,PR-102,CloudBridge UK,ASSOCIATE,INFLUENCED,API Platform,AUTH-004,INFLUENCE_ONLY,UK,ACTIVE,2026-03-01,400000,1
+PR-100,PR-101,CloudBridge US,ASSOCIATE,INFLUENCED,Cloud Security,AUTH-005,SERVICE,US,ACTIVE,2026-04-01,180000,1

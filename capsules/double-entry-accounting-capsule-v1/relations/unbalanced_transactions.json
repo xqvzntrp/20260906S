@@ -1,0 +1,9 @@
+{
+  "relation_id": "unbalanced_transactions",
+  "description": "Transactions whose valid-direction signed balance is nonzero. Invalid-direction transactions are intentionally excluded from this view and remain separately visible in transaction_judgment.",
+  "inputs": {"judgment": "transaction_judgment"},
+  "steps": [
+    {"id":"exceptions","op":"filter","from":"judgment","where":{"column":"balance_state","operator":"=","value":"UNBALANCED"}}
+  ],
+  "output": "exceptions"
+}

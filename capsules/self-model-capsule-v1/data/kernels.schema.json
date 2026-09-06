@@ -1,0 +1,1 @@
+{"schema_id":"kernels","version":"1.0.0","relation":"kernels","columns":[{"name":"kernel_id","type":"TEXT","nullable":false},{"name":"role","type":"TEXT","nullable":false}]}

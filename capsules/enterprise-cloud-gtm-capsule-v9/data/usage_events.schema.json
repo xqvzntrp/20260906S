@@ -1,0 +1,10 @@
+{
+  "schema_id": "usage_events",
+  "version": "2.0.0",
+  "relation": "usage_events",
+  "columns": [
+    {"name":"usage_event_id","type":"TEXT","nullable":false},
+    {"name":"contract_line_id","type":"TEXT","nullable":false},
+    {"name":"quantity","type":"DECIMAL","nullable":false}
+  ]
+}

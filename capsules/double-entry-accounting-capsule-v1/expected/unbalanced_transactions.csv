@@ -1,0 +1,2 @@
+transaction_id,balance_quantity,entry_count,invalid_direction_count,balance_state
+T200,15.00,2,0,UNBALANCED

@@ -1,0 +1,6 @@
+expertise_evidence_id,partner_registry_id,product_name,expertise_name,expertise_track,evidence_status,effective_date
+EXP-001,PR-101,Cloud Database,Cloud Database Sell Expertise,SELL,ACTIVE,2026-01-15
+EXP-002,PR-100,Cloud Database,Cloud Database Build Expertise,BUILD,ACTIVE,2025-11-01
+EXP-003,PR-201,API Platform,Cloud Platform Sell Expertise,SELL,ACTIVE,2026-02-10
+EXP-004,PR-102,API Platform,Cloud Platform Build Expertise,BUILD,ACTIVE,2026-03-20
+EXP-005,PR-101,Cloud Security,Cloud Security Service Expertise,SERVICE,ACTIVE,2026-04-05

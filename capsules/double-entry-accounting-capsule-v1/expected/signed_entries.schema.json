@@ -1,0 +1,14 @@
+{
+  "schema_id":"signed_entries","version":"1.0.0","relation":"signed_entries",
+  "columns":[
+    {"name":"transaction_id","type":"TEXT","nullable":false},
+    {"name":"entry_id","type":"TEXT","nullable":false},
+    {"name":"account_id","type":"TEXT","nullable":false},
+    {"name":"direction","type":"TEXT","nullable":false},
+    {"name":"quantity","type":"DECIMAL","nullable":false},
+    {"name":"direction_state","type":"TEXT","nullable":false},
+    {"name":"direction_sign","type":"INTEGER","nullable":false},
+    {"name":"invalid_direction_flag","type":"INTEGER","nullable":false},
+    {"name":"signed_quantity","type":"DECIMAL","nullable":false}
+  ]
+}

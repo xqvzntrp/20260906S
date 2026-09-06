@@ -1,0 +1,86 @@
+{
+  "relation_id": "signed_entries",
+  "description": "Accounting entries with explicit direction validity and a generic signed quantity. DEBIT contributes +quantity, CREDIT contributes -quantity, and unknown directions contribute zero only as a preserved placeholder while being separately flagged invalid.",
+  "inputs": {"entries": "data/entries.csv"},
+  "steps": [
+    {
+      "id": "with_direction_state",
+      "op": "derive",
+      "from": "entries",
+      "columns": [
+        {
+          "name": "direction_state",
+          "expression": {
+            "condition": {"column":"direction","operator":"=","value":"DEBIT"},
+            "then": {"value":"VALID"},
+            "else": {
+              "condition": {"column":"direction","operator":"=","value":"CREDIT"},
+              "then": {"value":"VALID"},
+              "else": {"value":"INVALID"}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "with_sign",
+      "op": "derive",
+      "from": "with_direction_state",
+      "columns": [
+        {
+          "name": "direction_sign",
+          "expression": {
+            "condition": {"column":"direction","operator":"=","value":"DEBIT"},
+            "then": {"value":1},
+            "else": {
+              "condition": {"column":"direction","operator":"=","value":"CREDIT"},
+              "then": {"value":-1},
+              "else": {"value":0}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "with_invalid_flag",
+      "op": "derive",
+      "from": "with_sign",
+      "columns": [
+        {
+          "name": "invalid_direction_flag",
+          "expression": {
+            "condition": {"column":"direction_state","operator":"=","value":"INVALID"},
+            "then": {"value":1},
+            "else": {"value":0}
+          }
+        }
+      ]
+    },
+    {
+      "id": "with_signed_quantity",
+      "op": "derive",
+      "from": "with_invalid_flag",
+      "columns": [
+        {
+          "name": "signed_quantity",
+          "precision": 18,
+          "scale": 2,
+          "expression": {
+            "function": "multiply",
+            "args": [{"column":"quantity"},{"column":"direction_sign"}]
+          }
+        }
+      ]
+    },
+    {
+      "id": "selected",
+      "op": "project",
+      "from": "with_signed_quantity",
+      "select": [
+        "transaction_id","entry_id","account_id","direction","quantity",
+        "direction_state","direction_sign","invalid_direction_flag","signed_quantity"
+      ]
+    }
+  ],
+  "output": "selected"
+}

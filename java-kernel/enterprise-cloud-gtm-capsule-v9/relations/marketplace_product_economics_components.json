@@ -1,0 +1,35 @@
+{
+  "relation_id": "marketplace_product_economics_components",
+  "description": "Marketplace reported amount and underlying cloud cost shown side by side without derived arithmetic.",
+  "inputs": {
+    "metering": "marketplace_metering_summary",
+    "costs": "cloud_cost_summary"
+  },
+  "steps": [
+    {
+      "id": "economics",
+      "op": "join",
+      "left": "metering",
+      "right": "costs",
+      "on": [
+        {
+          "left": "product_name",
+          "operator": "=",
+          "right": "product_name"
+        }
+      ],
+      "select": [
+        "marketplace",
+        "product_name",
+        "reported_amount",
+        "usage_record_count",
+        "product_family",
+        "cloud",
+        "cloud_cost",
+        "cloud_usage_quantity",
+        "cloud_cost_record_count"
+      ]
+    }
+  ],
+  "output": "economics"
+}

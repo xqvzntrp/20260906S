@@ -1,0 +1,89 @@
+{
+  "capsule": {
+    "id": "BILL_OF_MATERIALS_V1",
+    "version": "1.0.0"
+  },
+  "inputs": [
+    {
+      "id": "parts",
+      "path": "data/parts.csv",
+      "schema_path": "data/parts.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "bom",
+      "path": "data/bom.csv",
+      "schema_path": "data/bom.schema.json",
+      "format": "csv"
+    }
+  ],
+  "relations": [
+    {
+      "id": "bom_component_judgment",
+      "path": "relations/bom_component_judgment.json",
+      "format": "json"
+    },
+    {
+      "id": "subassembly_component_cost",
+      "path": "relations/subassembly_component_cost.json",
+      "format": "json"
+    },
+    {
+      "id": "subassembly_cost",
+      "path": "relations/subassembly_cost.json",
+      "format": "json"
+    },
+    {
+      "id": "product_component_cost",
+      "path": "relations/product_component_cost.json",
+      "format": "json"
+    },
+    {
+      "id": "product_cost_judgment",
+      "path": "relations/product_cost_judgment.json",
+      "format": "json"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "bom_component_judgment",
+      "relation": "bom_component_judgment",
+      "generated_path": "generated/bom_component_judgment.csv",
+      "expected_path": "expected/bom_component_judgment.csv",
+      "schema_path": "expected/bom_component_judgment.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "subassembly_component_cost",
+      "relation": "subassembly_component_cost",
+      "generated_path": "generated/subassembly_component_cost.csv",
+      "expected_path": "expected/subassembly_component_cost.csv",
+      "schema_path": "expected/subassembly_component_cost.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "subassembly_cost",
+      "relation": "subassembly_cost",
+      "generated_path": "generated/subassembly_cost.csv",
+      "expected_path": "expected/subassembly_cost.csv",
+      "schema_path": "expected/subassembly_cost.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "product_component_cost",
+      "relation": "product_component_cost",
+      "generated_path": "generated/product_component_cost.csv",
+      "expected_path": "expected/product_component_cost.csv",
+      "schema_path": "expected/product_component_cost.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "product_cost_judgment",
+      "relation": "product_cost_judgment",
+      "generated_path": "generated/product_cost_judgment.csv",
+      "expected_path": "expected/product_cost_judgment.csv",
+      "schema_path": "expected/product_cost_judgment.schema.json",
+      "format": "csv"
+    }
+  ]
+}

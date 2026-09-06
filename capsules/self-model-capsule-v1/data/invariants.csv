@@ -1,0 +1,8 @@
+invariant_id,statement
+I1,Preserve evidence
+I2,Make derivation explicit
+I3,Keep domain meaning out of the engine
+I4,Every transformation produces a new relation
+I5,Separate execution from correctness
+I6,Fail rather than infer unsupported meaning
+I7,Prefer composition over new runtime concepts

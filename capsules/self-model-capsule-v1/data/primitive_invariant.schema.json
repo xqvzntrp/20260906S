@@ -1,0 +1,1 @@
+{"schema_id":"primitive_invariant","version":"1.0.0","relation":"primitive_invariant","columns":[{"name":"primitive_id","type":"TEXT","nullable":false},{"name":"invariant_id","type":"TEXT","nullable":false}]}

@@ -1,0 +1,13 @@
+{
+  "schema_id": "marketplace_offers",
+  "version": "3.0.0",
+  "relation": "marketplace_offers",
+  "columns": [
+    {"name":"offer_id","type":"TEXT","nullable":false},
+    {"name":"opportunity_id","type":"TEXT","nullable":false},
+    {"name":"marketplace","type":"TEXT","nullable":false},
+    {"name":"product_id","type":"TEXT","nullable":false},
+    {"name":"currency","type":"TEXT","nullable":false},
+    {"name":"commercial_model","type":"TEXT","nullable":false}
+  ]
+}

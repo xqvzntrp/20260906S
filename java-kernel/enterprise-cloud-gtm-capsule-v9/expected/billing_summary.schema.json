@@ -1,0 +1,11 @@
+{
+  "schema_id": "billing_summary",
+  "version": "2.0.0",
+  "relation": "billing_summary",
+  "columns": [
+    {"name":"revenue","type":"DECIMAL","nullable":false},
+    {"name":"reconciled_amount","type":"DECIMAL","nullable":false},
+    {"name":"outstanding","type":"DECIMAL","nullable":false},
+    {"name":"invoice_count","type":"INTEGER","nullable":false}
+  ]
+}

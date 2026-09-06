@@ -1,0 +1,11 @@
+{
+  "schema_id": "product_bookings",
+  "version": "2.0.0",
+  "relation": "product_bookings",
+  "columns": [
+    {"name":"product_name","type":"TEXT","nullable":false},
+    {"name":"product_family","type":"TEXT","nullable":false},
+    {"name":"bookings","type":"DECIMAL","nullable":false},
+    {"name":"opportunity_count","type":"INTEGER","nullable":false}
+  ]
+}

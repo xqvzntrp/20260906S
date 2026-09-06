@@ -1,0 +1,72 @@
+{
+  "schema_id": "partner_product_authorized_exposure",
+  "version": "7.0.0",
+  "relation": "partner_product_authorized_exposure",
+  "columns": [
+    {
+      "name": "principal_partner_registry_id",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "partner_registry_id",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "partner_name",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "membership_type",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "attribution_type",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "product_name",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "authorization_id",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "commercial_motion",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "regional_market",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "authorization_status",
+      "type": "TEXT",
+      "nullable": false
+    },
+    {
+      "name": "effective_date",
+      "type": "DATE",
+      "nullable": false
+    },
+    {
+      "name": "booking_exposure",
+      "type": "DECIMAL",
+      "nullable": false
+    },
+    {
+      "name": "opportunity_count",
+      "type": "INTEGER",
+      "nullable": false
+    }
+  ]
+}

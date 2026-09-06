@@ -1,0 +1,6 @@
+transaction_id,balance_quantity,entry_count,invalid_direction_count
+T100,0,2,0
+T200,15,2,0
+T300,0,3,0
+T400,0,3,0
+T500,-25,2,1

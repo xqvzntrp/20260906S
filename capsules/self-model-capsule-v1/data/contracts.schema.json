@@ -1,0 +1,1 @@
+{"schema_id":"contracts","version":"1.0.0","relation":"contracts","columns":[{"name":"primitive_id","type":"TEXT","nullable":false},{"name":"provenance_shape","type":"TEXT","nullable":false},{"name":"primary_failure_class","type":"TEXT","nullable":false}]}

@@ -1,0 +1,11 @@
+{
+  "schema_id": "product_commitments",
+  "version": "2.0.0",
+  "relation": "product_commitments",
+  "columns": [
+    {"name":"product_name","type":"TEXT","nullable":false},
+    {"name":"product_family","type":"TEXT","nullable":false},
+    {"name":"committed_quantity","type":"DECIMAL","nullable":false},
+    {"name":"contract_count","type":"INTEGER","nullable":false}
+  ]
+}

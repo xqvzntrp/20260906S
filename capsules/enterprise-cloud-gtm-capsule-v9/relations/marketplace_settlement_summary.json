@@ -1,0 +1,54 @@
+{
+  "relation_id": "marketplace_settlement_summary",
+  "description": "Marketplace collections, disbursements, and outstanding amounts.",
+  "inputs": {
+    "settlements": "data/marketplace_settlements.csv",
+    "offers": "data/marketplace_offers.csv"
+  },
+  "steps": [
+    {
+      "id": "settlement_with_offer",
+      "op": "join",
+      "left": "settlements",
+      "right": "offers",
+      "on": [
+        {
+          "left": "offer_id",
+          "operator": "=",
+          "right": "offer_id"
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "op": "aggregate",
+      "from": "settlement_with_offer",
+      "group_by": [
+        "marketplace"
+      ],
+      "measures": [
+        {
+          "name": "collected_amount",
+          "function": "SUM",
+          "column": "collected_amount"
+        },
+        {
+          "name": "disbursed_amount",
+          "function": "SUM",
+          "column": "disbursed_amount"
+        },
+        {
+          "name": "outstanding_amount",
+          "function": "SUM",
+          "column": "outstanding_amount"
+        },
+        {
+          "name": "settlement_count",
+          "function": "COUNT",
+          "column": "settlement_id"
+        }
+      ]
+    }
+  ],
+  "output": "summary"
+}

@@ -1,0 +1,74 @@
+{
+  "relation_id": "primitive_contracts",
+  "description": "Executable documentation of V1 primitive contracts. Unknown optional notes remain explicit NULL rather than changing contract meaning.",
+  "inputs": {
+    "primitives": "data/primitives.csv",
+    "contracts": "data/contracts.csv",
+    "notes": "data/notes.csv"
+  },
+  "steps": [
+    {
+      "id": "with_contract",
+      "op": "join",
+      "left": "primitives",
+      "right": "contracts",
+      "on": [
+        {
+          "left": "primitive_id",
+          "operator": "=",
+          "right": "primitive_id"
+        }
+      ]
+    },
+    {
+      "id": "with_note",
+      "op": "left_join",
+      "left": "with_contract",
+      "right": "notes",
+      "on": [
+        {
+          "left": "primitive_id",
+          "operator": "=",
+          "right": "primitive_id"
+        }
+      ]
+    },
+    {
+      "id": "judged",
+      "op": "derive",
+      "from": "with_note",
+      "columns": [
+        {
+          "name": "contract_state",
+          "expression": {
+            "condition": {
+              "column": "produces_new_relation",
+              "operator": "=",
+              "value": true
+            },
+            "then": {
+              "value": "CONSTITUTIONAL_PRIMITIVE"
+            },
+            "else": {
+              "value": "INVALID_PRIMITIVE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "selected",
+      "op": "project",
+      "from": "judged",
+      "select": [
+        "primitive_id",
+        "category",
+        "provenance_shape",
+        "primary_failure_class",
+        "note",
+        "contract_state"
+      ]
+    }
+  ],
+  "output": "selected"
+}

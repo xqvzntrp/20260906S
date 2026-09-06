@@ -1,0 +1,6 @@
+assembly_id,component_id,part_name,quantity,unit_cost,extended_cost
+WHEEL,RIM,Rim,1,25,25
+WHEEL,HUB,Hub,1,18,18
+WHEEL,SPOKE,Spoke,32,1.25,40
+BRAKE,CALIPER,Brake Caliper,1,22,22
+BRAKE,PAD,Brake Pad,2,4,8

@@ -1,0 +1,6 @@
+authorization_id,partner_registry_id,product_name,commercial_motion,regional_market,authorization_status,effective_date
+AUTH-001,PR-101,Cloud Database,RESELL,US,ACTIVE,2026-01-01
+AUTH-002,PR-100,Cloud Database,CO_SELL,GLOBAL,ACTIVE,2025-10-01
+AUTH-003,PR-201,API Platform,RESELL,US_EAST,ACTIVE,2026-02-01
+AUTH-004,PR-102,API Platform,INFLUENCE_ONLY,UK,ACTIVE,2026-03-01
+AUTH-005,PR-101,Cloud Security,SERVICE,US,ACTIVE,2026-04-01

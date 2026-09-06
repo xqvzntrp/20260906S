@@ -1,0 +1,12 @@
+{
+  "relation_id":"bom_component_judgment",
+  "description":"Preserves every BOM edge and judges whether its component exists in the part catalog. Unknown components remain evidence rather than disappearing through an inner join.",
+  "inputs":{"bom":"data/bom.csv","parts":"data/parts.csv"},
+  "steps":[
+    {"id":"with_part","op":"left_join","left":"bom","right":"parts","on":[{"left":"component_id","operator":"=","right":"part_id"}]},
+    {"id":"state","op":"derive","from":"with_part","columns":[{"name":"component_state","expression":{"condition":{"column":"part_id","operator":"is_not_null"},"then":{"value":"KNOWN"},"else":{"value":"UNKNOWN_COMPONENT"}}}]},
+    {"id":"flag","op":"derive","from":"state","columns":[{"name":"invalid_component_flag","expression":{"condition":{"column":"component_state","operator":"=","value":"UNKNOWN_COMPONENT"},"then":{"value":1},"else":{"value":0}}}]},
+    {"id":"selected","op":"project","from":"flag","select":["assembly_id","component_id","quantity","part_name","part_type","unit_cost","component_state","invalid_component_flag"]}
+  ],
+  "output":"selected"
+}

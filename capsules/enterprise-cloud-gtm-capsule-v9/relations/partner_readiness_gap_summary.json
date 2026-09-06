@@ -1,0 +1,33 @@
+{
+  "relation_id": "partner_readiness_gap_summary",
+  "description": "Partner-level summary of readiness gaps. Booking exposure remains non-additive across partners because opportunity attribution is non-additive across partners.",
+  "inputs": {
+    "gaps": "partner_readiness_gaps"
+  },
+  "steps": [
+    {
+      "id": "summary",
+      "op": "aggregate",
+      "from": "gaps",
+      "group_by": [
+        "principal_partner_registry_id",
+        "partner_registry_id",
+        "partner_name",
+        "gap_type"
+      ],
+      "measures": [
+        {
+          "name": "gap_booking_exposure",
+          "function": "SUM",
+          "column": "booking_exposure"
+        },
+        {
+          "name": "product_count",
+          "function": "COUNT_DISTINCT",
+          "column": "product_name"
+        }
+      ]
+    }
+  ],
+  "output": "summary"
+}

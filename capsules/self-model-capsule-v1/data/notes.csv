@@ -1,0 +1,4 @@
+primitive_id,note
+LEFT_JOIN,preserves unmatched left evidence
+AGGREGATE,groups only observed evidence
+DERIVE,new values require explicit expressions

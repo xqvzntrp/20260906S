@@ -1,0 +1,6 @@
+partner_registry_id,principal_partner_registry_id,membership_type,partner_name,legal_entity_name,country,regional_market,status
+PR-100,PR-100,PRINCIPAL,CloudBridge Global,CloudBridge Global LLC,US,NORTH_AMERICA,ACTIVE
+PR-101,PR-100,ASSOCIATE,CloudBridge US,CloudBridge US LLC,US,NORTH_AMERICA,ACTIVE
+PR-102,PR-100,ASSOCIATE,CloudBridge UK,CloudBridge UK Ltd,GB,EMEA,ACTIVE
+PR-200,PR-200,PRINCIPAL,DataSphere Group,DataSphere Group Inc,US,NORTH_AMERICA,ACTIVE
+PR-201,PR-200,ASSOCIATE,DataSphere East,DataSphere East LLC,US,NORTH_AMERICA,ACTIVE

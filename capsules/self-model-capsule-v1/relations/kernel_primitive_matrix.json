@@ -1,0 +1,26 @@
+{
+  "relation_id": "kernel_primitive_matrix",
+  "inputs": {
+    "primitives": "required_primitives",
+    "kernels": "data/kernels.csv"
+  },
+  "steps": [
+    {
+      "id": "matrix",
+      "op": "cross_join",
+      "left": "kernels",
+      "right": "primitives"
+    },
+    {
+      "id": "selected",
+      "op": "project",
+      "from": "matrix",
+      "select": [
+        "kernel_id",
+        "operation_id",
+        "role"
+      ]
+    }
+  ],
+  "output": "selected"
+}

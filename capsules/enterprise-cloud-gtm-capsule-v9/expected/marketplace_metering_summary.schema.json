@@ -1,0 +1,11 @@
+{
+  "schema_id": "marketplace_metering_summary",
+  "version": "3.0.0",
+  "relation": "marketplace_metering_summary",
+  "columns": [
+    {"name":"marketplace","type":"TEXT","nullable":false},
+    {"name":"product_name","type":"TEXT","nullable":false},
+    {"name":"reported_amount","type":"DECIMAL","nullable":false},
+    {"name":"usage_record_count","type":"INTEGER","nullable":false}
+  ]
+}

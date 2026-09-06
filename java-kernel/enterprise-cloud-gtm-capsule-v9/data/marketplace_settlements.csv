@@ -1,0 +1,3 @@
+settlement_id,offer_id,collected_amount,disbursed_amount,outstanding_amount,status
+SET-001,OFFER-OCI-001,40000.00,38000.00,0.00,SETTLED
+SET-002,OFFER-OCI-002,12500.00,11875.00,14750.00,PARTIAL

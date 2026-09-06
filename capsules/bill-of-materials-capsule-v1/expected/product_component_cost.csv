@@ -1,0 +1,6 @@
+component_id,part_name,part_type,quantity,component_state,invalid_component_flag,effective_unit_cost,extended_cost
+FRAME,Frame,PURCHASED,1,KNOWN,0,120,120
+SEAT,Seat,PURCHASED,1,KNOWN,0,30,30
+WHEEL,Wheel Assembly,ASSEMBLY,2,KNOWN,0,83,166
+BRAKE,BRAKE Assembly,ASSEMBLY,2,KNOWN,0,30,60
+GHOST_MODULE,\N,\N,1,UNKNOWN_COMPONENT,1,0,0

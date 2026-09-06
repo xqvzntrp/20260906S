@@ -1,0 +1,303 @@
+{
+  "capsule": {
+    "id": "ENTERPRISE_CLOUD_GTM_V9",
+    "version": "9.0.0"
+  },
+  "inputs": [
+    {
+      "id": "products",
+      "path": "data/products.csv",
+      "schema_path": "data/products.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "accounts",
+      "path": "data/accounts.csv",
+      "schema_path": "data/accounts.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "opportunities",
+      "path": "data/opportunities.csv",
+      "schema_path": "data/opportunities.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "opportunity_line_items",
+      "path": "data/opportunity_line_items.csv",
+      "schema_path": "data/opportunity_line_items.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partners",
+      "path": "data/partners.csv",
+      "schema_path": "data/partners.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "opportunity_attribution",
+      "path": "data/opportunity_attribution.csv",
+      "schema_path": "data/opportunity_attribution.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "contract_line_items",
+      "path": "data/contract_line_items.csv",
+      "schema_path": "data/contract_line_items.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "usage_events",
+      "path": "data/usage_events.csv",
+      "schema_path": "data/usage_events.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "invoices",
+      "path": "data/invoices.csv",
+      "schema_path": "data/invoices.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "marketplace_offers",
+      "path": "data/marketplace_offers.csv",
+      "schema_path": "data/marketplace_offers.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "marketplace_entitlements",
+      "path": "data/marketplace_entitlements.csv",
+      "schema_path": "data/marketplace_entitlements.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "marketplace_usage_records",
+      "path": "data/marketplace_usage_records.csv",
+      "schema_path": "data/marketplace_usage_records.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "marketplace_settlements",
+      "path": "data/marketplace_settlements.csv",
+      "schema_path": "data/marketplace_settlements.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "cloud_cost_records",
+      "path": "data/cloud_cost_records.csv",
+      "schema_path": "data/cloud_cost_records.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partner_expertise_evidence",
+      "path": "data/partner_expertise_evidence.csv",
+      "schema_path": "data/partner_expertise_evidence.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partner_commercial_authorizations",
+      "path": "data/partner_commercial_authorizations.csv",
+      "schema_path": "data/partner_commercial_authorizations.schema.json",
+      "format": "csv"
+    }
+  ],
+  "relations": [
+    {
+      "id": "marketplace_product_economics",
+      "path": "relations/marketplace_product_economics.json",
+      "format": "json"
+    },
+    {
+      "id": "marketplace_product_economics_components",
+      "path": "relations/marketplace_product_economics_components.json",
+      "format": "json"
+    },
+    {
+      "id": "cloud_cost_summary",
+      "path": "relations/cloud_cost_summary.json",
+      "format": "json"
+    },
+    {
+      "id": "marketplace_settlement_summary",
+      "path": "relations/marketplace_settlement_summary.json",
+      "format": "json"
+    },
+    {
+      "id": "marketplace_metering_summary",
+      "path": "relations/marketplace_metering_summary.json",
+      "format": "json"
+    },
+    {
+      "id": "partner_product_booking_exposure",
+      "path": "relations/partner_product_booking_exposure.json",
+      "format": "json"
+    },
+    {
+      "id": "billing_summary",
+      "path": "relations/billing_summary.json",
+      "format": "json"
+    },
+    {
+      "id": "product_usage",
+      "path": "relations/product_usage.json",
+      "format": "json"
+    },
+    {
+      "id": "product_commitments",
+      "path": "relations/product_commitments.json",
+      "format": "json"
+    },
+    {
+      "id": "product_bookings",
+      "path": "relations/product_bookings.json",
+      "format": "json"
+    },
+    {
+      "id": "partner_product_expertise_exposure",
+      "path": "relations/partner_product_expertise_exposure.json",
+      "format": "json"
+    },
+    {
+      "id": "partner_product_authorized_exposure",
+      "path": "relations/partner_product_authorized_exposure.json",
+      "format": "json"
+    },
+    {
+      "id": "partner_product_readiness",
+      "path": "relations/partner_product_readiness.json",
+      "format": "json"
+    },
+    {
+      "id": "partner_readiness_gaps",
+      "path": "relations/partner_readiness_gaps.json",
+      "format": "json"
+    },
+    {
+      "id": "partner_readiness_gap_summary",
+      "path": "relations/partner_readiness_gap_summary.json",
+      "format": "json"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "product_bookings",
+      "relation": "product_bookings",
+      "generated_path": "generated/product_bookings.csv",
+      "expected_path": "expected/product_bookings.csv",
+      "schema_path": "expected/product_bookings.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partner_product_booking_exposure",
+      "relation": "partner_product_booking_exposure",
+      "generated_path": "generated/partner_product_booking_exposure.csv",
+      "expected_path": "expected/partner_product_booking_exposure.csv",
+      "schema_path": "expected/partner_product_booking_exposure.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "product_commitments",
+      "relation": "product_commitments",
+      "generated_path": "generated/product_commitments.csv",
+      "expected_path": "expected/product_commitments.csv",
+      "schema_path": "expected/product_commitments.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "product_usage",
+      "relation": "product_usage",
+      "generated_path": "generated/product_usage.csv",
+      "expected_path": "expected/product_usage.csv",
+      "schema_path": "expected/product_usage.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "billing_summary",
+      "relation": "billing_summary",
+      "generated_path": "generated/billing_summary.csv",
+      "expected_path": "expected/billing_summary.csv",
+      "schema_path": "expected/billing_summary.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "marketplace_metering_summary",
+      "relation": "marketplace_metering_summary",
+      "generated_path": "generated/marketplace_metering_summary.csv",
+      "expected_path": "expected/marketplace_metering_summary.csv",
+      "schema_path": "expected/marketplace_metering_summary.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "marketplace_settlement_summary",
+      "relation": "marketplace_settlement_summary",
+      "generated_path": "generated/marketplace_settlement_summary.csv",
+      "expected_path": "expected/marketplace_settlement_summary.csv",
+      "schema_path": "expected/marketplace_settlement_summary.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "cloud_cost_summary",
+      "relation": "cloud_cost_summary",
+      "generated_path": "generated/cloud_cost_summary.csv",
+      "expected_path": "expected/cloud_cost_summary.csv",
+      "schema_path": "expected/cloud_cost_summary.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "marketplace_product_economics_components",
+      "relation": "marketplace_product_economics_components",
+      "generated_path": "generated/marketplace_product_economics_components.csv",
+      "expected_path": "expected/marketplace_product_economics_components.csv",
+      "schema_path": "expected/marketplace_product_economics_components.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "marketplace_product_economics",
+      "relation": "marketplace_product_economics",
+      "generated_path": "generated/marketplace_product_economics.csv",
+      "expected_path": "expected/marketplace_product_economics.csv",
+      "schema_path": "expected/marketplace_product_economics.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partner_product_expertise_exposure",
+      "relation": "partner_product_expertise_exposure",
+      "generated_path": "generated/partner_product_expertise_exposure.csv",
+      "expected_path": "expected/partner_product_expertise_exposure.csv",
+      "schema_path": "expected/partner_product_expertise_exposure.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partner_product_authorized_exposure",
+      "relation": "partner_product_authorized_exposure",
+      "generated_path": "generated/partner_product_authorized_exposure.csv",
+      "expected_path": "expected/partner_product_authorized_exposure.csv",
+      "schema_path": "expected/partner_product_authorized_exposure.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partner_product_readiness",
+      "relation": "partner_product_readiness",
+      "generated_path": "generated/partner_product_readiness.csv",
+      "expected_path": "expected/partner_product_readiness.csv",
+      "schema_path": "expected/partner_product_readiness.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partner_readiness_gaps",
+      "relation": "partner_readiness_gaps",
+      "generated_path": "generated/partner_readiness_gaps.csv",
+      "expected_path": "expected/partner_readiness_gaps.csv",
+      "schema_path": "expected/partner_readiness_gaps.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "partner_readiness_gap_summary",
+      "relation": "partner_readiness_gap_summary",
+      "generated_path": "generated/partner_readiness_gap_summary.csv",
+      "expected_path": "expected/partner_readiness_gap_summary.csv",
+      "schema_path": "expected/partner_readiness_gap_summary.schema.json",
+      "format": "csv"
+    }
+  ]
+}

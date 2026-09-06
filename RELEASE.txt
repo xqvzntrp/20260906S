@@ -1,0 +1,5 @@
+RELATIONAL_CONSTITUTION_V1
+Release: 1.0.0
+Normative authority: RELATIONAL_CONSTITUTION_V1.md
+Kernels: Java witness; Python + SQLite witness
+Shared cross-kernel outputs matched: 29/29

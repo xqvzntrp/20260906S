@@ -1,0 +1,45 @@
+{
+  "relation_id": "product_bookings",
+  "description": "Bookings by product from opportunity line items.",
+  "inputs": {
+    "line_items": "data/opportunity_line_items.csv",
+    "products": "data/products.csv"
+  },
+  "steps": [
+    {
+      "id": "enriched",
+      "op": "join",
+      "left": "line_items",
+      "right": "products",
+      "on": [
+        {
+          "left": "product_id",
+          "operator": "=",
+          "right": "product_id"
+        }
+      ]
+    },
+    {
+      "id": "bookings_by_product",
+      "op": "aggregate",
+      "from": "enriched",
+      "group_by": [
+        "product_name",
+        "product_family"
+      ],
+      "measures": [
+        {
+          "name": "bookings",
+          "function": "SUM",
+          "column": "booking_amount"
+        },
+        {
+          "name": "opportunity_count",
+          "function": "COUNT_DISTINCT",
+          "column": "opportunity_id"
+        }
+      ]
+    }
+  ],
+  "output": "bookings_by_product"
+}

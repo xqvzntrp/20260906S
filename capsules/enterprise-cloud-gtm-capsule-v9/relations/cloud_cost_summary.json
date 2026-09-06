@@ -1,0 +1,51 @@
+{
+  "relation_id": "cloud_cost_summary",
+  "description": "Underlying cloud infrastructure consumption and cost summarized by product.",
+  "inputs": {
+    "cost_records": "data/cloud_cost_records.csv",
+    "products": "data/products.csv"
+  },
+  "steps": [
+    {
+      "id": "cost_with_product",
+      "op": "join",
+      "left": "cost_records",
+      "right": "products",
+      "on": [
+        {
+          "left": "product_id",
+          "operator": "=",
+          "right": "product_id"
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "op": "aggregate",
+      "from": "cost_with_product",
+      "group_by": [
+        "product_name",
+        "product_family",
+        "cloud"
+      ],
+      "measures": [
+        {
+          "name": "cloud_cost",
+          "function": "SUM",
+          "column": "cost_amount"
+        },
+        {
+          "name": "cloud_usage_quantity",
+          "function": "SUM",
+          "column": "usage_quantity"
+        },
+        {
+          "name": "cloud_cost_record_count",
+          "function": "COUNT",
+          "column": "cost_record_id"
+        }
+      ]
+    }
+  ],
+  "output": "summary"
+}

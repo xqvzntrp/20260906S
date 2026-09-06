@@ -1,0 +1,1 @@
+{"schema_id":"kernel_primitive_matrix","version":"1.0.0","relation":"kernel_primitive_matrix","columns":[{"name":"kernel_id","type":"TEXT","nullable":false},{"name":"operation_id","type":"TEXT","nullable":false},{"name":"role","type":"TEXT","nullable":false}]}

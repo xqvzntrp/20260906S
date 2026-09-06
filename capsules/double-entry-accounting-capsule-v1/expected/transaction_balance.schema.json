@@ -1,0 +1,9 @@
+{
+  "schema_id":"transaction_balance","version":"1.0.0","relation":"transaction_balance",
+  "columns":[
+    {"name":"transaction_id","type":"TEXT","nullable":false},
+    {"name":"balance_quantity","type":"DECIMAL","nullable":false},
+    {"name":"entry_count","type":"INTEGER","nullable":false},
+    {"name":"invalid_direction_count","type":"INTEGER","nullable":false}
+  ]
+}

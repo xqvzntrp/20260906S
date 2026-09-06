@@ -1,0 +1,1 @@
+{"schema_id":"invariants","version":"1.0.0","relation":"invariants","columns":[{"name":"invariant_id","type":"TEXT","nullable":false},{"name":"statement","type":"TEXT","nullable":false}]}
