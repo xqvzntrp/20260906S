@@ -9,7 +9,7 @@ import java.util.List;
 
 public final class NegativeCapsuleTest {
     private static final Path BASE =
-            Path.of("enterprise-cloud-gtm-capsule-v9");
+            Path.of("..", "capsules", "enterprise-cloud-gtm-capsule-v9");
 
     private static final Path FIXTURE_ROOT =
             Path.of("out", "negative-capsules");
