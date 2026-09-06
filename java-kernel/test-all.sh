@@ -39,12 +39,12 @@ done
 
 echo
 echo "===== INTEGRATION: V9 VALIDATION ====="
-java -cp out ValidateCapsule enterprise-cloud-gtm-capsule-v9
+java -cp out ValidateCapsule ../capsules/enterprise-cloud-gtm-capsule-v9
 INTEGRATION_COUNT=$((INTEGRATION_COUNT + 1))
 
 echo
 echo "===== INTEGRATION: V9 EXECUTION + VERIFICATION ====="
-java -cp out RunCapsule enterprise-cloud-gtm-capsule-v9
+java -cp out RunCapsule ../capsules/enterprise-cloud-gtm-capsule-v9
 INTEGRATION_COUNT=$((INTEGRATION_COUNT + 1))
 
 echo

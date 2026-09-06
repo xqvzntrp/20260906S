@@ -1,6 +1,6 @@
 # Relational Constitution V1
 
-This ZIP is a self-contained V1 phase deliverable for a small relational capsule architecture.
+This repository is a self-contained V1 implementation and conformance package for a small relational capsule architecture.
 
 The governing document is `RELATIONAL_CONSTITUTION_V1.md`.
 
