@@ -1,7 +1,0 @@
-principal_partner_registry_id,partner_registry_id,partner_name,membership_type,attribution_type,product_name,expertise_evidence_id,expertise_name,expertise_track,evidence_status,effective_date,booking_exposure,opportunity_count
-PR-100,PR-101,CloudBridge US,ASSOCIATE,SOURCED,Cloud Database,EXP-001,Cloud Database Sell Expertise,SELL,ACTIVE,2026-01-15,300000.00,1
-PR-100,PR-101,CloudBridge US,ASSOCIATE,SOURCED,Cloud Security,EXP-005,Cloud Security Service Expertise,SERVICE,ACTIVE,2026-04-05,120000.00,1
-PR-100,PR-100,CloudBridge Global,PRINCIPAL,CO_SELL,Cloud Database,EXP-002,Cloud Database Build Expertise,BUILD,ACTIVE,2025-11-01,250000.00,1
-PR-200,PR-201,DataSphere East,ASSOCIATE,SOURCED,API Platform,EXP-003,Cloud Platform Sell Expertise,SELL,ACTIVE,2026-02-10,400000.00,1
-PR-100,PR-102,CloudBridge UK,ASSOCIATE,INFLUENCED,API Platform,EXP-004,Cloud Platform Build Expertise,BUILD,ACTIVE,2026-03-20,400000.00,1
-PR-100,PR-101,CloudBridge US,ASSOCIATE,INFLUENCED,Cloud Security,EXP-005,Cloud Security Service Expertise,SERVICE,ACTIVE,2026-04-05,180000.00,1

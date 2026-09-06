@@ -1,6 +1,0 @@
-cost_record_id,product_id,cloud,service,region,resource_id,usage_quantity,cost_amount
-CCR-001,PRD-API,ORACLE,OCI_COMPUTE,us-ashburn-1,ocid-api-001,2500000.00,9000.00
-CCR-002,PRD-API,ORACLE,OCI_COMPUTE,us-ashburn-1,ocid-api-002,3600000.00,11000.00
-CCR-003,PRD-DB,ORACLE,OCI_DATABASE,us-phoenix-1,ocid-db-001,12500.00,4500.00
-CCR-004,PRD-DB,ORACLE,OCI_DATABASE,us-phoenix-1,ocid-db-002,15950.00,5200.00
-CCR-005,PRD-SEC,ORACLE,OCI_SECURITY,us-ashburn-1,ocid-sec-001,85.00,1800.00

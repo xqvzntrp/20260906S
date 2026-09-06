@@ -1,4 +1,0 @@
-product_name,product_family,cloud,cloud_cost,cloud_usage_quantity,cloud_cost_record_count
-API Platform,Platform,ORACLE,20000,6100000,2
-Cloud Database,Data,ORACLE,9700,28450,2
-Cloud Security,Security,ORACLE,1800,85,1

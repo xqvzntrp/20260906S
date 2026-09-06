@@ -1,5 +1,0 @@
-contract_line_id,contract_id,product_id,committed_quantity
-CLI-001,C-1001,PRD-DB,30000.00
-CLI-002,C-1001,PRD-SEC,100.00
-CLI-003,C-1002,PRD-API,5000000.00
-CLI-004,C-1003,PRD-DB,20000.00
