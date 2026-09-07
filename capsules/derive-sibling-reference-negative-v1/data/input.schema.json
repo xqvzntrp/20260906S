@@ -1,0 +1,12 @@
+{
+  "schema_id": "input",
+  "version": "1.0.0",
+  "relation": "input",
+  "columns": [
+    {
+      "name": "x",
+      "type": "INTEGER",
+      "nullable": false
+    }
+  ]
+}

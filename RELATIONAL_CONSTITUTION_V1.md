@@ -254,6 +254,8 @@ The algebra is acyclic. Arbitrary recursive traversal is not a V1 primitive.
 
 **Output:** a new relation containing the input fields plus declared derived fields, optionally projected and ordered by the step contract.
 
+**Expression scope:** every expression declared by one `DERIVE` step is resolved against that step's input relation schema. Derived columns declared by the same step are siblings and are not visible to one another. A dependency on a derived column requires a subsequent `DERIVE` step.
+
 **Result schema:** derived-column nullability is determined compositionally from the expression. A column reference inherits source nullability. A non-NULL literal is non-nullable and a NULL literal is nullable. Arithmetic is nullable when either operand is nullable. A conditional result is nullable when either branch is nullable. Scalar `max` is nullable only when both operands are nullable. Declared precision or scale is valid only for a DECIMAL result and is enforced when that derived value is materialized.
 
 **NULL:** arithmetic with NULL produces NULL. Conditions use three-valued logic; an `if` condition is taken only when TRUE, otherwise the `else` branch is selected.

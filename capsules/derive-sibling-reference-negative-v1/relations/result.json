@@ -1,0 +1,36 @@
+{
+  "relation_id": "result",
+  "inputs": {
+    "input": "input"
+  },
+  "steps": [
+    {
+      "id": "derived",
+      "op": "derive",
+      "from": "input",
+      "columns": [
+        {
+          "name": "a",
+          "expression": {
+            "function": "add",
+            "args": [
+              {"column": "x"},
+              {"value": 1}
+            ]
+          }
+        },
+        {
+          "name": "b",
+          "expression": {
+            "function": "add",
+            "args": [
+              {"column": "a"},
+              {"value": 1}
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "output": "derived"
+}

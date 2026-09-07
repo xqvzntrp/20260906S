@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 K=ROOT/'sqlite-kernel'/'kernel.py'
 BASE=ROOT/'capsules'/'double-entry-accounting-capsule-v1'
+DERIVE_SIBLING_NEGATIVE=ROOT/'capsules'/'derive-sibling-reference-negative-v1'
 
 def run(cap): return subprocess.run(['python3',str(K),str(cap)],text=True,capture_output=True)
 def copycap(td,name):
@@ -33,5 +34,13 @@ def main():
         f=p/'capsule.json'; d=json.load(open(f)); d['inputs'][0]['path']='../outside.csv'; f.write_text(json.dumps(d))
         must_fail('path containment',run(p),'path escapes capsule root')
 
-    print('PYSQL NEGATIVE TESTS PASSED: 3')
+        # DERIVE siblings are resolved only against the step input schema.
+        # A sibling derived column is not visible to another expression
+        # declared by the same step.
+        must_fail(
+            'derive sibling reference',
+            run(DERIVE_SIBLING_NEGATIVE),
+            'unknown column a')
+
+    print('PYSQL NEGATIVE TESTS PASSED: 4')
 if __name__=='__main__': main()

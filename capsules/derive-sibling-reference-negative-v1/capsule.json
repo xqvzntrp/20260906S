@@ -1,0 +1,22 @@
+{
+  "capsule": {
+    "id": "DERIVE_SIBLING_REFERENCE_NEGATIVE_V1",
+    "version": "1.0.0"
+  },
+  "inputs": [
+    {
+      "id": "input",
+      "path": "data/input.csv",
+      "schema_path": "data/input.schema.json",
+      "format": "csv"
+    }
+  ],
+  "relations": [
+    {
+      "id": "result",
+      "path": "relations/result.json",
+      "format": "json"
+    }
+  ],
+  "outputs": []
+}

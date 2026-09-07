@@ -367,13 +367,13 @@ def apply_step(db, relation_id, idx, step, available):
     elif op=='derive':
         outs=list(ins); sels=['*']
         for d in step['columns']:
-            ex,t=expr_sql(d['expression'],outs)
+            ex,t=expr_sql(d['expression'],ins)
             if d['name'] in schema_map(outs): raise ValueError(f'derived column already exists {d["name"]}')
             if d.get('precision') is not None or d.get('scale') is not None:
                 t='DECIMAL'
                 p=d.get('precision'); sc=d.get('scale')
                 ex=f'dec_enforce({ex},{"NULL" if p is None else int(p)},{"NULL" if sc is None else int(sc)})'
-            nullable=infer_expr_nullable(d['expression'],outs)
+            nullable=infer_expr_nullable(d['expression'],ins)
             oc=Column(d['name'],t,nullable,d.get('precision'),d.get('scale'))
             outs.append(oc)
             sels.append(f'{ex} AS {qi(d["name"])}')
