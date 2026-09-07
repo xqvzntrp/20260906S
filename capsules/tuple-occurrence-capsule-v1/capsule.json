@@ -1,0 +1,76 @@
+{
+  "capsule": {
+    "id": "TUPLE_OCCURRENCE_V1",
+    "version": "1.0.0"
+  },
+  "inputs": [
+    {
+      "id": "duplicates",
+      "path": "data/duplicates.csv",
+      "schema_path": "data/duplicates.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "singleton",
+      "path": "data/singleton.csv",
+      "schema_path": "data/singleton.schema.json",
+      "format": "csv"
+    }
+  ],
+  "relations": [
+    {
+      "id": "projected_duplicates",
+      "path": "relations/projected_duplicates.json",
+      "format": "json"
+    },
+    {
+      "id": "filtered_duplicates",
+      "path": "relations/filtered_duplicates.json",
+      "format": "json"
+    },
+    {
+      "id": "crossed_duplicates",
+      "path": "relations/crossed_duplicates.json",
+      "format": "json"
+    },
+    {
+      "id": "duplicate_count",
+      "path": "relations/duplicate_count.json",
+      "format": "json"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "projected_duplicates",
+      "relation": "projected_duplicates",
+      "generated_path": "generated/projected_duplicates.csv",
+      "expected_path": "expected/projected_duplicates.csv",
+      "schema_path": "expected/projected_duplicates.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "filtered_duplicates",
+      "relation": "filtered_duplicates",
+      "generated_path": "generated/filtered_duplicates.csv",
+      "expected_path": "expected/filtered_duplicates.csv",
+      "schema_path": "expected/filtered_duplicates.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "crossed_duplicates",
+      "relation": "crossed_duplicates",
+      "generated_path": "generated/crossed_duplicates.csv",
+      "expected_path": "expected/crossed_duplicates.csv",
+      "schema_path": "expected/crossed_duplicates.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "duplicate_count",
+      "relation": "duplicate_count",
+      "generated_path": "generated/duplicate_count.csv",
+      "expected_path": "expected/duplicate_count.csv",
+      "schema_path": "expected/duplicate_count.schema.json",
+      "format": "csv"
+    }
+  ]
+}

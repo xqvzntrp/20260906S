@@ -1,0 +1,17 @@
+{
+  "relation_id": "filtered_duplicates",
+  "inputs": {"duplicates": "duplicates"},
+  "steps": [
+    {
+      "id": "filtered",
+      "op": "filter",
+      "from": "duplicates",
+      "where": {
+        "column": "amount",
+        "operator": "=",
+        "value": 10
+      }
+    }
+  ],
+  "output": "filtered"
+}

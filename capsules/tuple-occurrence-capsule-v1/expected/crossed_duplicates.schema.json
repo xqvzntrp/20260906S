@@ -1,0 +1,10 @@
+{
+  "schema_id": "crossed_duplicates",
+  "version": "1.0.0",
+  "relation": "crossed_duplicates",
+  "columns": [
+    {"name":"item","type":"TEXT","nullable":false},
+    {"name":"amount","type":"INTEGER","nullable":false},
+    {"name":"marker","type":"TEXT","nullable":false}
+  ]
+}

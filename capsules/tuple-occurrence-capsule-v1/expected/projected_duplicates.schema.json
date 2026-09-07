@@ -1,0 +1,9 @@
+{
+  "schema_id": "projected_duplicates",
+  "version": "1.0.0",
+  "relation": "projected_duplicates",
+  "columns": [
+    {"name":"item","type":"TEXT","nullable":false},
+    {"name":"amount","type":"INTEGER","nullable":false}
+  ]
+}

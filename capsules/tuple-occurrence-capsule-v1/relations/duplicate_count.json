@@ -1,0 +1,19 @@
+{
+  "relation_id": "duplicate_count",
+  "inputs": {"duplicates": "duplicates"},
+  "steps": [
+    {
+      "id": "counted",
+      "op": "aggregate",
+      "from": "duplicates",
+      "measures": [
+        {
+          "name": "occurrence_count",
+          "function": "COUNT",
+          "column": "amount"
+        }
+      ]
+    }
+  ],
+  "output": "counted"
+}

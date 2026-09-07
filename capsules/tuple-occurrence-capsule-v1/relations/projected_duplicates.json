@@ -1,0 +1,13 @@
+{
+  "relation_id": "projected_duplicates",
+  "inputs": {"duplicates": "duplicates"},
+  "steps": [
+    {
+      "id": "projected",
+      "op": "project",
+      "from": "duplicates",
+      "select": ["item", "amount"]
+    }
+  ],
+  "output": "projected"
+}

@@ -1,0 +1,8 @@
+{
+  "schema_id": "singleton",
+  "version": "1.0.0",
+  "relation": "singleton",
+  "columns": [
+    {"name":"marker","type":"TEXT","nullable":false}
+  ]
+}

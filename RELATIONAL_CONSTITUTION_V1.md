@@ -93,6 +93,16 @@ A schema is an ordered finite sequence of uniquely named columns. Each column de
 
 A tuple is an ordered sequence of values conforming positionally to one schema.
 
+### 5.3.1 Tuple occurrence
+
+A tuple occurrence is one occurrence of a tuple within a relation's bag.
+
+Distinct tuple occurrences may have equivalent values in every column. They remain distinct occurrences when multiplicity is greater than one.
+
+Tuple occurrence distinction is semantic for multiplicity and provenance, but is not an authored column, domain identifier, or part of tuple value equality.
+
+A primitive that preserves, selects, combines, or derives from tuples operates on tuple occurrences. Provenance therefore identifies source occurrences, not merely source tuple values.
+
 ### 5.4 Relation
 
 A relation is a schema plus a finite **bag** of tuples: tuple multiplicity is preserved, but row order is not part of V1 relational meaning. Relational meaning does not depend on physical storage or serialization order. A kernel may emit rows deterministically for inspection, but cross-kernel conformance compares typed tuple bags.
@@ -250,12 +260,14 @@ Conditional expressions are explicit trees containing a condition, `then`, and `
 
 Provenance is semantic, even when a kernel does not materialize it as an output file.
 
-For every output tuple, provenance is obtained recursively from the primitive that created it:
+For every output tuple occurrence, provenance is obtained recursively from the primitive that created it:
 
-- PROJECT / RENAME / FILTER / DERIVE: one source tuple;
-- JOIN / CROSS_JOIN: one left and one right tuple;
-- LEFT_JOIN: one left tuple and zero-or-one right tuple;
-- AGGREGATE: the complete finite source group.
+- PROJECT / RENAME / FILTER / DERIVE: exactly one source tuple occurrence;
+- JOIN / CROSS_JOIN: exactly one left tuple occurrence and one right tuple occurrence;
+- LEFT_JOIN: exactly one left tuple occurrence and zero-or-one right tuple occurrence;
+- AGGREGATE: the complete finite bag of source tuple occurrences belonging to the group.
+
+Equivalent tuple values do not collapse provenance occurrences.
 
 Field-level provenance is similarly recursive through projection, rename, expressions, join retention, and aggregate measures.
 

@@ -1,0 +1,8 @@
+{
+  "schema_id": "duplicate_count",
+  "version": "1.0.0",
+  "relation": "duplicate_count",
+  "columns": [
+    {"name":"occurrence_count","type":"INTEGER","nullable":false}
+  ]
+}

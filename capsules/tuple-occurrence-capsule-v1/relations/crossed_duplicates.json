@@ -1,0 +1,16 @@
+{
+  "relation_id": "crossed_duplicates",
+  "inputs": {
+    "duplicates": "duplicates",
+    "singleton": "singleton"
+  },
+  "steps": [
+    {
+      "id": "crossed",
+      "op": "cross_join",
+      "left": "duplicates",
+      "right": "singleton"
+    }
+  ],
+  "output": "crossed"
+}
