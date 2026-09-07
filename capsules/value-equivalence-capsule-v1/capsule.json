@@ -1,0 +1,44 @@
+{
+  "capsule": {
+    "id": "VALUE_EQUIVALENCE_V1",
+    "version": "1.0.0"
+  },
+  "inputs": [
+    {
+      "id": "values",
+      "path": "data/values.csv",
+      "schema_path": "data/values.schema.json",
+      "format": "csv"
+    }
+  ],
+  "relations": [
+    {
+      "id": "value_groups",
+      "path": "relations/value_groups.json",
+      "format": "json"
+    },
+    {
+      "id": "value_distinct_count",
+      "path": "relations/value_distinct_count.json",
+      "format": "json"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "value_groups",
+      "relation": "value_groups",
+      "generated_path": "generated/value_groups.csv",
+      "expected_path": "expected/value_groups.csv",
+      "schema_path": "expected/value_groups.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "value_distinct_count",
+      "relation": "value_distinct_count",
+      "generated_path": "generated/value_distinct_count.csv",
+      "expected_path": "expected/value_distinct_count.csv",
+      "schema_path": "expected/value_distinct_count.schema.json",
+      "format": "csv"
+    }
+  ]
+}

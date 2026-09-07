@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 JAVA="$ROOT/java-kernel"
 PY="$ROOT/sqlite-kernel/kernel.py"
-CAPS=(double-entry-accounting-capsule-v1 bill-of-materials-capsule-v1 self-model-capsule-v1 enterprise-cloud-gtm-capsule-v9)
+CAPS=(double-entry-accounting-capsule-v1 bill-of-materials-capsule-v1 self-model-capsule-v1 enterprise-cloud-gtm-capsule-v9 value-equivalence-capsule-v1)
 
 rm -rf "$ROOT/conformance/java-generated" "$ROOT/conformance/sqlite-generated"
 mkdir -p "$ROOT/conformance/java-generated" "$ROOT/conformance/sqlite-generated"

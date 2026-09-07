@@ -59,6 +59,32 @@ A value is either `NULL` or a member of a declared scalar domain. V1 scalar doma
 
 `DECIMAL` is exact decimal arithmetic. A conforming kernel must not substitute binary floating-point semantics where that can change an observable result.
 
+### 5.1.1 Value equivalence
+
+Value equivalence is defined within a declared scalar domain.
+
+Two non-NULL values are equivalent when they denote the same value under that domain's V1 semantics.
+
+For `DECIMAL`, representational scale is not part of value identity. For example, `1`, `1.0`, and `1.00` are equivalent decimal values when admitted by the applicable decimal contract.
+
+For grouping, `NULL` values in the same column position belong to one equivalence class.
+
+Ordinary comparison involving `NULL` evaluates `UNKNOWN`, except for explicit NULL predicates.
+
+`GROUP BY` uses value equivalence, including the grouping rule for `NULL`. `COUNT_DISTINCT` first excludes `NULL` values and then counts equivalence classes among the remaining values. `JOIN` equality and `FILTER` comparison use comparison semantics. Cross-kernel conformance compares values using value equivalence.
+
+### 5.1.2 Three-valued logic and NULL
+
+V1 predicates evaluate to `TRUE`, `FALSE`, or `UNKNOWN`.
+
+Ordinary comparison with `NULL` evaluates `UNKNOWN`.
+
+A `FILTER` retains a tuple only when its predicate evaluates `TRUE`; both `FALSE` and `UNKNOWN` are not selected.
+
+For ordinary equality joins, `NULL` does not equal `NULL`.
+
+Conditional expressions select the `then` branch only when the condition evaluates `TRUE`; `FALSE` and `UNKNOWN` select the `else` branch.
+
 ### 5.2 Schema
 
 A schema is an ordered finite sequence of uniquely named columns. Each column declares a scalar domain and nullability. A decimal column may additionally declare precision and scale.

@@ -1,0 +1,9 @@
+{
+  "schema_id": "lookup",
+  "version": "1.0.0",
+  "relation": "lookup",
+  "columns": [
+    {"name":"join_key","type":"INTEGER","nullable":true},
+    {"name":"label","type":"TEXT","nullable":false}
+  ]
+}

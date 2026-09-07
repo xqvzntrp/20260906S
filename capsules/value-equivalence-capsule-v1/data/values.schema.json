@@ -1,0 +1,10 @@
+{
+  "schema_id": "values",
+  "version": "1.0.0",
+  "relation": "values",
+  "columns": [
+    {"name":"row_id","type":"INTEGER","nullable":false},
+    {"name":"decimal_value","type":"NUMBER","precision":18,"scale":2,"nullable":true},
+    {"name":"join_key","type":"INTEGER","nullable":true}
+  ]
+}

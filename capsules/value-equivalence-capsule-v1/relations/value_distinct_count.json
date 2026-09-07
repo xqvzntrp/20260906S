@@ -1,0 +1,20 @@
+{
+  "relation_id": "value_distinct_count",
+  "description": "Counts decimal value-equivalence classes after excluding NULL.",
+  "inputs": {"values": "values"},
+  "steps": [
+    {
+      "id": "counted",
+      "op": "aggregate",
+      "from": "values",
+      "measures": [
+        {
+          "name": "distinct_decimal_count",
+          "function": "COUNT_DISTINCT",
+          "column": "decimal_value"
+        }
+      ]
+    }
+  ],
+  "output": "counted"
+}

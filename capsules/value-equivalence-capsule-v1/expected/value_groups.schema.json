@@ -1,0 +1,9 @@
+{
+  "schema_id": "value_groups",
+  "version": "1.0.0",
+  "relation": "value_groups",
+  "columns": [
+    {"name":"decimal_value","type":"DECIMAL","nullable":true},
+    {"name":"row_count","type":"INTEGER","nullable":false}
+  ]
+}

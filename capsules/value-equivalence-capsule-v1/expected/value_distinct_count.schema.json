@@ -1,0 +1,8 @@
+{
+  "schema_id": "value_distinct_count",
+  "version": "1.0.0",
+  "relation": "value_distinct_count",
+  "columns": [
+    {"name":"distinct_decimal_count","type":"INTEGER","nullable":false}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "relation_id": "value_groups",
+  "description": "Groups decimal values using V1 value equivalence, including one equivalence class for NULL.",
+  "inputs": {"values": "values"},
+  "steps": [
+    {
+      "id": "grouped",
+      "op": "aggregate",
+      "from": "values",
+      "group_by": ["decimal_value"],
+      "measures": [
+        {"name":"row_count","function":"COUNT","column":"row_id"}
+      ]
+    }
+  ],
+  "output": "grouped"
+}

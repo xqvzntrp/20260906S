@@ -498,6 +498,33 @@ public final class WitnessExecutor {
                 rows);
     }
 
+
+    /*
+     * Canonical key for V1 value equivalence.
+     *
+     * DECIMAL representation scale is not part of value identity:
+     * 1, 1.0, and 1.00 therefore share one semantic key.
+     *
+     * NULL remains NULL and all other V1 scalar domains already have
+     * runtime equality compatible with their V1 value identity.
+     */
+    private static Object semanticValueKey(
+            Object value,
+            SemanticModel.Type type) {
+
+        if (value == null) {
+            return null;
+        }
+
+        if (type == SemanticModel.Type.DECIMAL) {
+            return ((java.math.BigDecimal) value)
+                    .stripTrailingZeros();
+        }
+
+        return value;
+    }
+
+
     private static Object enforceDerivedNumericContract(
             SemanticModel.DerivedColumn derived,
             Object value) {
@@ -607,6 +634,9 @@ public final class WitnessExecutor {
         List<Integer> groupIndexes =
                 new ArrayList<>();
 
+        List<SemanticModel.Type> groupTypes =
+                new ArrayList<>();
+
         for (String name :
                 step.groupBy) {
 
@@ -621,6 +651,11 @@ public final class WitnessExecutor {
             }
 
             groupIndexes.add(index);
+
+            groupTypes.add(
+                    input.schema.columns
+                            .get(index)
+                            .type);
         }
 
         List<Integer> measureIndexes =
@@ -671,11 +706,15 @@ public final class WitnessExecutor {
             List<Object> key =
                     new ArrayList<>();
 
-            for (Integer index :
-                    groupIndexes) {
+            for (int i = 0;
+                 i < groupIndexes.size();
+                 i++) {
 
                 key.add(
-                        row.get(index));
+                        semanticValueKey(
+                                row.get(
+                                        groupIndexes.get(i)),
+                                groupTypes.get(i)));
             }
 
             Object[] states =
@@ -741,7 +780,10 @@ public final class WitnessExecutor {
                         Set<Object> distinct =
                                 (Set<Object>) states[i];
 
-                        distinct.add(value);
+                        distinct.add(
+                            semanticValueKey(
+                                    value,
+                                    measureTypes.get(i)));
                     }
 
                     continue;
