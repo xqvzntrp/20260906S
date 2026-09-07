@@ -1,0 +1,24 @@
+{
+  "relation_id": "result",
+  "inputs": {
+    "left": "left",
+    "right": "right"
+  },
+  "steps": [
+    {
+      "id": "joined",
+      "op": "join",
+      "left": "left",
+      "right": "right",
+      "on": [
+        {
+          "left": "id",
+          "operator": "=",
+          "right": "id"
+        }
+      ],
+      "select": ["id"]
+    }
+  ],
+  "output": "joined"
+}

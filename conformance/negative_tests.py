@@ -6,6 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 K=ROOT/'sqlite-kernel'/'kernel.py'
 BASE=ROOT/'capsules'/'double-entry-accounting-capsule-v1'
 DERIVE_SIBLING_NEGATIVE=ROOT/'capsules'/'derive-sibling-reference-negative-v1'
+JOIN_AMBIGUOUS_PROJECTION_NEGATIVE=ROOT/'capsules'/'join-ambiguous-projection-negative-v1'
 
 def run(cap): return subprocess.run(['python3',str(K),str(cap)],text=True,capture_output=True)
 def copycap(td,name):
@@ -42,5 +43,11 @@ def main():
             run(DERIVE_SIBLING_NEGATIVE),
             'unknown column a')
 
-    print('PYSQL NEGATIVE TESTS PASSED: 4')
+        # Projection does not legalize an ambiguous JOIN working schema.
+        must_fail(
+            'join ambiguous projection',
+            run(JOIN_AMBIGUOUS_PROJECTION_NEGATIVE),
+            'ambiguous join output column status')
+
+    print('PYSQL NEGATIVE TESTS PASSED: 5')
 if __name__=='__main__': main()

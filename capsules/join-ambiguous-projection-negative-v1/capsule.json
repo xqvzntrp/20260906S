@@ -1,0 +1,28 @@
+{
+  "capsule": {
+    "id": "JOIN_AMBIGUOUS_PROJECTION_NEGATIVE_V1",
+    "version": "1.0.0"
+  },
+  "inputs": [
+    {
+      "id": "left",
+      "path": "data/left.csv",
+      "schema_path": "data/left.schema.json",
+      "format": "csv"
+    },
+    {
+      "id": "right",
+      "path": "data/right.csv",
+      "schema_path": "data/right.schema.json",
+      "format": "csv"
+    }
+  ],
+  "relations": [
+    {
+      "id": "result",
+      "path": "relations/result.json",
+      "format": "json"
+    }
+  ],
+  "outputs": []
+}

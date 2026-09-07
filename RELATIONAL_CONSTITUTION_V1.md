@@ -192,7 +192,9 @@ The algebra is acyclic. Arbitrary recursive traversal is not a V1 primitive.
 
 **Input:** left and right relations plus one or more typed join conditions.
 
-**Output:** a new relation containing every matching left/right tuple pair. Same-named equality join keys are represented once in the result; other duplicate column identities are invalid unless explicitly renamed or projected away according to the normalized contract.
+**Output:** a new relation containing every matching left/right tuple pair.
+
+**Schema:** output columns are constructed deterministically. All left-side columns appear first in left schema order. Retained right-side columns then appear in right schema order. A right-side column whose name is identical to a left-side column is suppressed only when that name is a same-named equality join key. Any other duplicate output column identity is a semantic failure and must be resolved before the JOIN. A projection declared on the JOIN does not legalize an otherwise ambiguous working schema. Retained columns preserve their declared schema. If the JOIN declares an explicit projection, that projection determines the final output column set and order.
 
 **NULL:** `NULL` does not equal `NULL` for ordinary equality joins.
 
@@ -208,7 +210,7 @@ The algebra is acyclic. Arbitrary recursive traversal is not a V1 primitive.
 
 **Output:** all JOIN matches plus one row for each unmatched left tuple, with retained right-side fields set to `NULL`.
 
-**Schema:** left-side columns preserve their declared schema. Retained right-side columns preserve their name, scalar domain, and any declared DECIMAL precision and scale, but become nullable because an unmatched left tuple has no corresponding right-side value.
+**Schema:** column identity and ordering follow the JOIN schema-construction rule. Left-side columns preserve their declared schema. Retained right-side columns preserve their name, scalar domain, and any declared DECIMAL precision and scale, but become nullable because an unmatched left tuple has no corresponding right-side value. Any ambiguous non-key duplicate identity must be resolved before the LEFT_JOIN; a same-step projection does not legalize an ambiguous working schema.
 
 **Provenance:** matched tuples trace to one left and one right tuple; unmatched tuples trace to one left tuple and an explicit absence of a matching right tuple.
 

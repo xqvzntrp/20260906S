@@ -81,4 +81,4 @@ echo '===== V1 CONFORMANCE PASSED ====='
 echo "java_test_classes_passed=$TEST_COUNT"
 echo "shared_capsules_passed=${#CAPS[@]}"
 echo "cross_kernel_outputs_matched=$COMPARE_COUNT"
-echo "pysql_negative_tests_passed=4"
+echo "pysql_negative_tests_passed=5"
