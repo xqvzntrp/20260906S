@@ -258,6 +258,43 @@ def infer_expr(e,schema):
         if fn=='max':return unify(*ats)
     raise ValueError(f'cannot infer expression {e}')
 
+def infer_expr_nullable(e, schema):
+    if 'column' in e:
+        c = schema_map(schema).get(e['column'])
+        if c is None:
+            raise ValueError(f'unknown column {e["column"]}')
+        return c.nullable
+
+    if 'value' in e:
+        return e['value'] is None
+
+    if 'condition' in e:
+        return (
+            infer_expr_nullable(e['then'], schema)
+            or infer_expr_nullable(e['else'], schema)
+        )
+
+    if 'function' in e:
+        fn=e['function'].lower()
+        args=e.get('args',[])
+
+        if len(args)!=2:
+            raise ValueError(f'{fn} requires exactly two arguments')
+
+        left_nullable=infer_expr_nullable(args[0],schema)
+        right_nullable=infer_expr_nullable(args[1],schema)
+
+        if fn in ('add','subtract','multiply','divide'):
+            return left_nullable or right_nullable
+
+        if fn=='max':
+            return left_nullable and right_nullable
+
+        raise ValueError(f'unsupported scalar function {fn}')
+
+    raise ValueError(f'cannot infer expression nullability {e}')
+
+
 def apply_step(db, relation_id, idx, step, available):
     op=step['op']; sid=step['id']; view=f'__{relation_id}__{idx}_{sid}'
     if op not in OPS: raise ValueError(f'unsupported op {op}')
@@ -314,7 +351,10 @@ def apply_step(db, relation_id, idx, step, available):
                 if c.type=='DECIMAL': ex=f'dec_sum({qi(c.name)})'
                 elif c.type=='INTEGER': ex=f'SUM({qi(c.name)})'
                 else: raise ValueError('SUM requires numeric column')
-                oc=Column(m['name'],c.type,True,c.precision,c.scale)
+
+                # SUM may exceed the precision/scale contract of one
+                # source value, so V1 does not inherit source p/s.
+                oc=Column(m['name'],c.type,True,None,None)
             elif fn in ('MIN','MAX'):
                 ex=(f'dec_{fn.lower()}({qi(c.name)})' if c.type=='DECIMAL' else f'{fn}({qi(c.name)})')
                 oc=Column(m['name'],c.type,True,c.precision,c.scale)
@@ -333,7 +373,10 @@ def apply_step(db, relation_id, idx, step, available):
                 t='DECIMAL'
                 p=d.get('precision'); sc=d.get('scale')
                 ex=f'dec_enforce({ex},{"NULL" if p is None else int(p)},{"NULL" if sc is None else int(sc)})'
-            oc=Column(d['name'],t,True,d.get('precision'),d.get('scale')); outs.append(oc); sels.append(f'{ex} AS {qi(d["name"])}')
+            nullable=infer_expr_nullable(d['expression'],outs)
+            oc=Column(d['name'],t,nullable,d.get('precision'),d.get('scale'))
+            outs.append(oc)
+            sels.append(f'{ex} AS {qi(d["name"])}')
         sql='SELECT '+', '.join(sels)+f' FROM {qi(src)}'
         if step.get('select'):
             inner=view+'_derive'; db.execute(f'CREATE TEMP VIEW {qi(inner)} AS {sql}')
@@ -386,7 +429,18 @@ def execute_capsule(root:Path, write_generated=True):
             gp=(root/o['generated_path']).resolve()
             if root not in gp.parents: raise ValueError('generated path escapes capsule root')
             gp.parent.mkdir(parents=True,exist_ok=True)
+
             write_csv(gp,schema,rows)
+
+            schema_name = (
+                gp.name[:-4] + '.schema.json'
+                if gp.name.endswith('.csv')
+                else gp.name + '.schema.json'
+            )
+
+            write_schema_json(
+                gp.with_name(schema_name),
+                schema)
     return manifest,results
 
 def serialize(v,c):
@@ -399,6 +453,27 @@ def write_csv(path,schema,rows):
     with path.open('w',newline='',encoding='utf-8') as f:
         w=csv.writer(f,lineterminator='\n'); w.writerow([c.name for c in schema])
         for row in rows:w.writerow([serialize(v,c) for v,c in zip(row,schema)])
+
+def write_schema_json(path, schema):
+    path.parent.mkdir(parents=True,exist_ok=True)
+
+    document = {
+        "columns": [
+            {
+                "name": c.name,
+                "type": c.type,
+                "nullable": c.nullable,
+                "precision": c.precision,
+                "scale": c.scale
+            }
+            for c in schema
+        ]
+    }
+
+    with path.open('w',encoding='utf-8') as f:
+        json.dump(document,f,indent=2)
+        f.write('\n')
+
 
 def read_expected(path,schema):
     out=[]

@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 JAVA="$ROOT/java-kernel"
 PY="$ROOT/sqlite-kernel/kernel.py"
-CAPS=(double-entry-accounting-capsule-v1 bill-of-materials-capsule-v1 self-model-capsule-v1 enterprise-cloud-gtm-capsule-v9 value-equivalence-capsule-v1 tuple-occurrence-capsule-v1)
+CAPS=(double-entry-accounting-capsule-v1 bill-of-materials-capsule-v1 self-model-capsule-v1 enterprise-cloud-gtm-capsule-v9 value-equivalence-capsule-v1 tuple-occurrence-capsule-v1 numeric-result-contract-capsule-v1)
 
 rm -rf "$ROOT/conformance/java-generated" "$ROOT/conformance/sqlite-generated"
 mkdir -p "$ROOT/conformance/java-generated" "$ROOT/conformance/sqlite-generated"
@@ -26,6 +26,7 @@ for cap in "${CAPS[@]}"; do
   java -cp out RunCapsule "$ROOT/capsules/$cap"
   mkdir -p "$ROOT/conformance/java-generated/$cap"
   cp "$ROOT/capsules/$cap/generated/"*.csv "$ROOT/conformance/java-generated/$cap/"
+  cp "$ROOT/capsules/$cap/generated/"*.schema.json "$ROOT/conformance/java-generated/$cap/"
 done
 
 echo '===== PYTHON + SQLITE SHARED CAPSULES ====='
@@ -35,6 +36,7 @@ for cap in "${CAPS[@]}"; do
   python3 "$PY" "$ROOT/capsules/$cap"
   mkdir -p "$ROOT/conformance/sqlite-generated/$cap"
   cp "$ROOT/capsules/$cap/generated/"*.csv "$ROOT/conformance/sqlite-generated/$cap/"
+  cp "$ROOT/capsules/$cap/generated/"*.schema.json "$ROOT/conformance/sqlite-generated/$cap/"
 done
 
 echo '===== DIRECT CROSS-KERNEL COMPARISON ====='
@@ -46,8 +48,26 @@ from pathlib import Path
 root=Path(sys.argv[1]); cap=sys.argv[2]; cr=root/'capsules'/cap
 m=json.load(open(cr/'capsule.json'))
 for o in m['outputs']:
-    cmd=['python3',str(root/'conformance'/'compare.py'),str(cr/o['schema_path']),str(root/'conformance'/'java-generated'/cap/(Path(o['generated_path']).name)),str(root/'conformance'/'sqlite-generated'/cap/(Path(o['generated_path']).name))]
+    generated_name=Path(o['generated_path']).name
+    schema_name=(generated_name[:-4] + '.schema.json' if generated_name.endswith('.csv') else generated_name + '.schema.json')
+
+    schema_cmd=[
+        'python3',
+        str(root/'conformance'/'compare-schema.py'),
+        str(root/'conformance'/'java-generated'/cap/schema_name),
+        str(root/'conformance'/'sqlite-generated'/cap/schema_name)
+    ]
+    subprocess.run(schema_cmd,check=True)
+
+    cmd=[
+        'python3',
+        str(root/'conformance'/'compare.py'),
+        str(cr/o['schema_path']),
+        str(root/'conformance'/'java-generated'/cap/generated_name),
+        str(root/'conformance'/'sqlite-generated'/cap/generated_name)
+    ]
     subprocess.run(cmd,check=True)
+
     print('MATCH:',cap,o['id'])
 PY
   n=$(python3 -c "import json; print(len(json.load(open('$ROOT/capsules/$cap/capsule.json'))['outputs']))")

@@ -1,0 +1,21 @@
+{
+  "relation_id": "amount_sum",
+  "inputs": {
+    "amounts": "amounts"
+  },
+  "steps": [
+    {
+      "id": "summed",
+      "op": "aggregate",
+      "from": "amounts",
+      "measures": [
+        {
+          "name": "total_amount",
+          "function": "SUM",
+          "column": "amount"
+        }
+      ]
+    }
+  ],
+  "output": "summed"
+}

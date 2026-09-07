@@ -85,6 +85,16 @@ For ordinary equality joins, `NULL` does not equal `NULL`.
 
 Conditional expressions select the `then` branch only when the condition evaluates `TRUE`; `FALSE` and `UNKNOWN` select the `else` branch.
 
+### 5.1.3 Decimal arithmetic and numeric contracts
+
+V1 decimal addition, subtraction, and multiplication are exact.
+
+Decimal division uses a working precision of 38 significant decimal digits and `HALF_UP` rounding when an exact result cannot be represented within that working precision.
+
+A declared `DECIMAL(p,s)` result contract is enforced when the value is materialized under that declaration. Scale `s` is applied using `HALF_UP` rounding when rounding is required. Precision `p` is checked after scale enforcement. A value that exceeds the declared precision causes an execution failure.
+
+Intermediate arithmetic is not implicitly constrained by the precision or scale of its input columns. Precision and scale constrain a value only where the resulting column declaration explicitly carries that contract.
+
 ### 5.2 Schema
 
 A schema is an ordered finite sequence of uniquely named columns. Each column declares a scalar domain and nullability. A decimal column may additionally declare precision and scale.
@@ -198,6 +208,8 @@ The algebra is acyclic. Arbitrary recursive traversal is not a V1 primitive.
 
 **Output:** all JOIN matches plus one row for each unmatched left tuple, with retained right-side fields set to `NULL`.
 
+**Schema:** left-side columns preserve their declared schema. Retained right-side columns preserve their name, scalar domain, and any declared DECIMAL precision and scale, but become nullable because an unmatched left tuple has no corresponding right-side value.
+
 **Provenance:** matched tuples trace to one left and one right tuple; unmatched tuples trace to one left tuple and an explicit absence of a matching right tuple.
 
 **Failure:** same structural and semantic failures as JOIN.
@@ -222,7 +234,9 @@ The algebra is acyclic. Arbitrary recursive traversal is not a V1 primitive.
 
 **V1 measures:** `SUM`, `COUNT`, `COUNT_DISTINCT`, `MIN`, `MAX`.
 
-**Output:** one tuple per observed group. Group order follows first group appearance unless an explicit ordering contract states otherwise. For V1, an empty input produces no groups, including when `group_by` is empty; this matches the first Java witness kernel and is therefore frozen as V1 behavior.
+**Output:** one tuple per observed group. Group order follows first group appearance unless an explicit ordering contract states otherwise. For V1, an empty input produces no groups, including when `group_by` is empty.
+
+**Result schema:** `COUNT` and `COUNT_DISTINCT` produce non-nullable `INTEGER` columns. `SUM` preserves whether its numeric source domain is `INTEGER` or `DECIMAL`, but does not inherit source DECIMAL precision or scale because a sum may exceed the contract of an individual source value. `MIN` and `MAX` preserve the source scalar domain and any declared DECIMAL precision and scale. `SUM`, `MIN`, and `MAX` result columns are nullable.
 
 **NULL:** COUNT and COUNT_DISTINCT ignore NULL measure values. SUM, MIN, and MAX ignore NULL values and produce NULL when a non-empty observed group has no non-NULL value for that measure.
 
@@ -239,6 +253,8 @@ The algebra is acyclic. Arbitrary recursive traversal is not a V1 primitive.
 **V1 scalar arithmetic:** `add`, `subtract`, `multiply`, `divide`, and scalar `max`, plus conditional expressions.
 
 **Output:** a new relation containing the input fields plus declared derived fields, optionally projected and ordered by the step contract.
+
+**Result schema:** derived-column nullability is determined compositionally from the expression. A column reference inherits source nullability. A non-NULL literal is non-nullable and a NULL literal is nullable. Arithmetic is nullable when either operand is nullable. A conditional result is nullable when either branch is nullable. Scalar `max` is nullable only when both operands are nullable. Declared precision or scale is valid only for a DECIMAL result and is enforced when that derived value is materialized.
 
 **NULL:** arithmetic with NULL produces NULL. Conditions use three-valued logic; an `if` condition is taken only when TRUE, otherwise the `else` branch is selected.
 
@@ -291,7 +307,7 @@ All paths must remain within the capsule root. A hardened kernel should evaluate
 
 Given the same capsule and admitted input evidence, two conforming V1 kernels are observationally equivalent when they agree on:
 
-1. output relation schemas and column order;
+1. output relation schemas, including column order, column identity, scalar domain, nullability, and any declared DECIMAL precision and scale;
 2. output tuple bags, preserving multiplicity and ignoring serialization row order;
 3. exact INTEGER and DECIMAL values after canonical numeric normalization;
 4. NULL placement;

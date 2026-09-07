@@ -1,0 +1,31 @@
+{
+  "capsule": {
+    "id": "NUMERIC_RESULT_CONTRACT_V1",
+    "version": "1.0.0"
+  },
+  "inputs": [
+    {
+      "id": "amounts",
+      "path": "data/amounts.csv",
+      "schema_path": "data/amounts.schema.json",
+      "format": "csv"
+    }
+  ],
+  "relations": [
+    {
+      "id": "amount_sum",
+      "path": "relations/amount_sum.json",
+      "format": "json"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "amount_sum",
+      "relation": "amount_sum",
+      "generated_path": "generated/amount_sum.csv",
+      "expected_path": "expected/amount_sum.csv",
+      "schema_path": "expected/amount_sum.schema.json",
+      "format": "csv"
+    }
+  ]
+}

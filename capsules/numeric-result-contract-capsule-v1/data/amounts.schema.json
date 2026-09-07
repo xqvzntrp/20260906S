@@ -1,0 +1,14 @@
+{
+  "schema_id": "amounts",
+  "version": "1.0.0",
+  "relation": "amounts",
+  "columns": [
+    {
+      "name": "amount",
+      "type": "NUMBER",
+      "precision": 5,
+      "scale": 2,
+      "nullable": false
+    }
+  ]
+}

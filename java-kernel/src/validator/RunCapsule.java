@@ -149,9 +149,30 @@ public final class RunCapsule {
                         "declared output is unavailable: " + output.id);
             }
 
+            Path generatedPath =
+                    resolveInsideRoot(
+                            root,
+                            output.generatedPath);
+
             OutputWriter.writeCsv(
-                    resolveInsideRoot(root, output.generatedPath),
+                    generatedPath,
                     data);
+
+            String fileName =
+                    generatedPath.getFileName().toString();
+
+            String schemaFileName =
+                    fileName.endsWith(".csv")
+                    ? fileName.substring(
+                            0,
+                            fileName.length() - 4) +
+                            ".schema.json"
+                    : fileName + ".schema.json";
+
+            OutputWriter.writeSchemaJson(
+                    generatedPath.resolveSibling(
+                            schemaFileName),
+                    data.schema);
 
             System.out.println("OUTPUT: " + output.id);
         }

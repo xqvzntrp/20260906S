@@ -1,0 +1,12 @@
+{
+  "schema_id": "amount_sum",
+  "version": "1.0.0",
+  "relation": "amount_sum",
+  "columns": [
+    {
+      "name": "total_amount",
+      "type": "DECIMAL",
+      "nullable": true
+    }
+  ]
+}

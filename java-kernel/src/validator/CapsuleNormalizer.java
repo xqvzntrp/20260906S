@@ -668,7 +668,9 @@ public final class CapsuleNormalizer implements Normalizer {
                     new SemanticModel.Column(
                             rightColumn.name,
                             rightColumn.type,
-                            true));
+                            true,
+                            rightColumn.precision,
+                            rightColumn.scale));
         }
 
         SemanticModel.Schema outputSchema =
