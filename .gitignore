@@ -1,2 +1,6 @@
 java-kernel/out/
 capsules/*/generated/
+conformance/java-generated/
+conformance/sqlite-generated/
+sqlite-kernel/__pycache__/
+*.pyc
