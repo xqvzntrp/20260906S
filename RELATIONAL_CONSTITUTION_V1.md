@@ -236,7 +236,7 @@ The algebra is acyclic. Arbitrary recursive traversal is not a V1 primitive.
 
 **V1 measures:** `SUM`, `COUNT`, `COUNT_DISTINCT`, `MIN`, `MAX`.
 
-**Output:** one tuple per observed group. Group order follows first group appearance unless an explicit ordering contract states otherwise. For V1, an empty input produces no groups, including when `group_by` is empty.
+**Output:** one tuple per observed group. Output row order is not part of AGGREGATE relational meaning unless an explicit ordering contract is declared. For V1, an empty input produces no groups, including when `group_by` is empty.
 
 **Result schema:** `COUNT` and `COUNT_DISTINCT` produce non-nullable `INTEGER` columns. `SUM` preserves whether its numeric source domain is `INTEGER` or `DECIMAL`, but does not inherit source DECIMAL precision or scale because a sum may exceed the contract of an individual source value. `MIN` and `MAX` preserve the source scalar domain and any declared DECIMAL precision and scale. `SUM`, `MIN`, and `MAX` result columns are nullable.
 
