@@ -226,7 +226,7 @@ The algebra is acyclic. Arbitrary recursive traversal is not a V1 primitive.
 
 **Provenance:** every output tuple traces to exactly one left tuple and one right tuple.
 
-**Failure:** ambiguous output schema unless resolved by the declared projection/normalization contract.
+**Failure:** ambiguous output schema. Left and right inputs must already have column identities that produce a valid CROSS_JOIN working schema; ambiguity must be resolved by earlier relation transformations before the CROSS_JOIN.
 
 **Invariant argument:** CROSS_JOIN adds no domain relationship claim beyond declared Cartesian composition.
 

@@ -1,5 +1,8 @@
 RELATIONAL_CONSTITUTION_V1
 Release: 1.0.0
-Normative authority: RELATIONAL_CONSTITUTION_V1.md
+Semantic authority: RELATIONAL_CONSTITUTION_V1.md
+Interchange authority: CAPSULE_FORMAT_V1.md
 Kernels: Java witness; Python + SQLite witness
-Shared cross-kernel outputs matched: 29/29
+Shared capsules passed: 7
+Shared cross-kernel outputs matched: 36/36
+Python + SQLite negative boundary tests passed: 5/5

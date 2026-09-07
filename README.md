@@ -7,6 +7,7 @@ The governing document is `RELATIONAL_CONSTITUTION_V1.md`.
 ## Contents
 
 - `RELATIONAL_CONSTITUTION_V1.md` — normative semantic authority.
+- `CAPSULE_FORMAT_V1.md` — normative V1 capsule interchange representation.
 - `java-kernel/` — the existing Java witness kernel from the V3 baseline.
 - `sqlite-kernel/` — a clarity-first Python + SQLite second conforming kernel.
 - `capsules/` — shared capsules executed by both kernels, including a self-model capsule.
@@ -14,7 +15,11 @@ The governing document is `RELATIONAL_CONSTITUTION_V1.md`.
 
 ## Authority
 
-No kernel defines the semantics. Kernels conform to the constitution.
+`RELATIONAL_CONSTITUTION_V1.md` defines V1 semantic meaning.
+
+`CAPSULE_FORMAT_V1.md` defines the V1 capsule interchange representation.
+
+No kernel defines either contract. Kernels conform to both.
 
 ## Quick start
 
