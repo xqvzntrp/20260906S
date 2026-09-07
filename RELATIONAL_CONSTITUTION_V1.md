@@ -293,6 +293,8 @@ Field-level provenance is similarly recursive through projection, rename, expres
 
 A conforming optimization may change execution strategy but must preserve this provenance relation.
 
+V1 does not require a kernel to materialize provenance or expose a standardized provenance query interface. Provenance conformance is therefore a normative semantic obligation, not a directly materialized cross-kernel witness in the V1 conformance harness. A kernel or optimization is nonconforming if its provenance relation contradicts this section, even when its ordinary relation outputs are observationally equivalent.
+
 ## 10. Correctness is separate from execution
 
 Execution answers: **what did this kernel derive from this capsule and evidence?**
